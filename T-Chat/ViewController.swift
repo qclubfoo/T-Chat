@@ -17,37 +17,37 @@ class ViewController: UIViewController {
         
         NextVCButton.addTarget(self, action: #selector(showSecondVC), for: .touchUpInside)
         
-        print("View было загружено из памяти\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View было загружено из памяти\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("View сейчас появится на экране\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View сейчас появится на экране\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("View появилась на экране\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View появилась на экране\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        print("View сейчас будет отстраивать свои subviews на экране\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View сейчас будет отстраивать свои subviews на экране\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("View отстроила свои subviews на экране\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View отстроила свои subviews на экране\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("View сейчас исчезнет с экрана\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View сейчас исчезнет с экрана\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("View исчезла с экрана\nбыла вызвана функция \(#function)\n")
+        logMessage(message: "View исчезла с экрана\nбыла вызвана функция \(#function)\n", logIsEnabled)
     }
     
     // функция для перехода в другой контроллер. Нужна для отработки методово viewWillDisappear и viewDidDisappear

@@ -8,6 +8,15 @@
 
 import UIKit
 
+// включение/выключение логов
+let logIsEnabled = true
+
+func logMessage(message: String, _ isEnabled: Bool) {
+    if isEnabled {
+        print(message)
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,28 +25,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        print("Application moved from <Not running> to <Incactive>: <\(#function)>")
+        logMessage(message: "Application moved from <Not running> to <Incactive>: <\(#function)>", logIsEnabled)
         return true
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print("Application moved from <Background> to <Inactive>: <\(#function)>")
+        logMessage(message: "Application moved from <Background> to <Inactive>: <\(#function)>", logIsEnabled)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        print("Application moved from <Inactive> to <Active>: <\(#function)>")
+        logMessage(message: "Application moved from <Inactive> to <Active>: <\(#function)>", logIsEnabled)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        print("Application moved from <Active> to <Inactive>: <\(#function)>")
+        logMessage(message: "Application moved from <Active> to <Inactive>: <\(#function)>", logIsEnabled)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print("Application moved from <Inactive> to <Background>: <\(#function)>")
+        logMessage(message: "Application moved from <Inactive> to <Background>: <\(#function)>", logIsEnabled)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        print("Application moved from <Background> to <Suspended> or <Not running>: <\(#function)>")
+        logMessage(message: "Application moved from <Background> to <Suspended> or <Not running>: <\(#function)>", logIsEnabled)
     }
     
     
