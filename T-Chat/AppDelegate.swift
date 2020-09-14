@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        print("State changed to \(#function)")
+        print("Application moved from <Background> to <Suspended> or <Not running>: <\(#function)>")
     }
     
     
