@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nQr-qR-QlQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="vHD-p2-J8N">
+            <objects>
+                <viewController id="nQr-qR-QlQ" customClass="ProfileViewController" customModule="T_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bM5-U5-LjI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbM-l1-eIy">
+                                <rect key="frame" x="66.5" y="825" width="281" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fbM-l1-eIy" secondAttribute="height" multiplier="137:20" id="2VM-VZ-Yen"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <state key="normal" title="Save">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fbM-l1-eIy" secondAttribute="bottom" constant="30" id="2mq-ez-n8L"/>
+                            <constraint firstItem="fbM-l1-eIy" firstAttribute="centerX" secondItem="bM5-U5-LjI" secondAttribute="centerX" id="RG2-jC-i08"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O0m-Kt-HHG"/>
+                    </view>
+                    <connections>
+                        <outlet property="saveButton" destination="fbM-l1-eIy" id="FvN-DS-9S7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rpm-IC-IPF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-89.855072463768124" y="109.82142857142857"/>
+        </scene>
+    </scenes>
+</document>

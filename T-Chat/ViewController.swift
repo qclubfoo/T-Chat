@@ -10,12 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var NextVCButton: UIButton!
+    @IBOutlet weak var profileVCButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NextVCButton.addTarget(self, action: #selector(showSecondVC), for: .touchUpInside)
+        profileVCButton.addTarget(self, action: #selector(showSecondVC), for: .touchUpInside)
         
         logMessage(message: "View было загружено из памяти\nбыла вызвана функция \(#function)\n")
     }
@@ -52,9 +52,10 @@ class ViewController: UIViewController {
     
     // функция для перехода в другой контроллер. Нужна для отработки методово viewWillDisappear и viewDidDisappear
     @objc func showSecondVC() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "SecondVC") else { return }
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+
+        guard let profileVC = ProfileViewController.storyboardInstance() else { return }
+        profileVC.modalPresentationStyle = .fullScreen
+        present(profileVC, animated: true)
     }
 
 }
