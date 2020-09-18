@@ -9,7 +9,7 @@
 import UIKit
 
 // включение/выключение логов
-let logIsEnabled = true
+let logIsEnabled = false
 
 func logMessage(message: String) {
     if logIsEnabled {

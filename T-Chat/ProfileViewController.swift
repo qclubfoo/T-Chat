@@ -11,14 +11,17 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabelContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         saveButton.layer.cornerRadius = saveButton.bounds.height / 4
         saveButton.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
+        
+        nameLabelContainerView.layer.cornerRadius = nameLabelContainerView.bounds.width / 2
 
-        // Do any additional setup after loading the view.
     }
     
 
