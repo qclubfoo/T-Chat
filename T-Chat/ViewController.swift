@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         logMessage(message: "View исчезла с экрана\nбыла вызвана функция \(#function)\n")
     }
     
-    // функция для перехода в другой контроллер. Нужна для отработки методово viewWillDisappear и viewDidDisappear
+    // Переход в ProfileViewController
     @objc func showSecondVC() {
 
         guard let profileVC = ProfileViewController.storyboardInstance() else { return }
