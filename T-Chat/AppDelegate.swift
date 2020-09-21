@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         logMessage(message: "Application moved from <Background> to <Inactive>: <\(#function)>")
     }

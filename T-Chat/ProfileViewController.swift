@@ -16,10 +16,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameAndSurnameLabel: UILabel!
-    @IBOutlet weak var describingYouselfLabel: UILabel!
+    @IBOutlet weak var youselfDescriptionLabel: UILabel!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+//        Задание 3.2
+//        В данный момент нет ни view, ни outlets. Соответственно во всех outlets значение будет nil, но т.к. они раскрываются через force unwrap, то есть без проверки на nil, при обращении к outlet saveButton значение которой в данный момент nil, программа крашится.
+//        print("ViewFrame is \(saveButton.frame)")
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        Задание 3.3
+        print("In \(#function)\nSave button frame is \(saveButton.frame)\n")
         
         saveButton.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
         
@@ -31,23 +43,41 @@ class ProfileViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        Задание 3.4
+//        Frame в данном методе отличен от frame в методе viewDidLoad() т.к. в методе viewDidLoad() все размеры берутся из storyboard, а после метода viewDidLoad() выстраиваются constraints в методах viewWillLayoutSubviews() и viewDidLayoutSubviews(), то есть изменяются размеры view, а только потом, с уже полностью актуальными размерами, view появляется на экране. Когда отрабатывает метод viewDidAppear(_:animated), нам поянто, что view уже уже на экране с актуальными размерами.
+        print("In \(#function)\nSave button frame is \(saveButton.frame)\n")
+
+    }
+    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
         nameLabelContainerView.layer.cornerRadius = nameLabelContainerView.bounds.height / 2
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
         saveButton.layer.cornerRadius = saveButton.bounds.height / 4
     }
     
+    // Метод для обработки нажатия на кнопку edit. @objc нужен т.к. вызываемый метод в addTarget вызывается через #selector
     @objc func editButtonTapped() {
+        // Инициализация actionSheet
         let ac = UIAlertController(title: "Edit profile", message: nil, preferredStyle: .actionSheet)
+        
+        // action для выбора фотографии из галереи
         ac.addAction(UIAlertAction(title: "Choose profile photo from galery", style: .default) { [weak self] _ in
             self?.getImage(fromSourceType: .photoLibrary)
         })
+        
+        // action для выбора фотографии с помощью камеры
         ac.addAction(UIAlertAction(title: "Take profile photo by camera", style: .default) { [weak self] _ in
             self?.getImage(fromSourceType: .camera)
         })
-        ac.addAction(UIAlertAction(title: "Edit name and surname", style: .default) { [weak self] _ in
+        
+        // action для изменения имени и фамилии с помощью другого alert с textField
+        ac.addAction(UIAlertAction(title: "Edit name and/or surname", style: .default) { [weak self] _ in
             let ac = UIAlertController(title: "New name and/or surname", message: nil, preferredStyle: .alert)
             ac.addTextField(configurationHandler: { textField in
                 textField.placeholder = "name (space) surname"
@@ -63,32 +93,36 @@ class ProfileViewController: UIViewController {
             self?.present(ac, animated: true)
         })
         
-        ac.addAction(UIAlertAction(title: "Edit self describing", style: .default) { [weak self] _ in
-            let ac = UIAlertController(title: "Describing youself", message: nil, preferredStyle: .alert)
+        // action для изменения данных о себе с помощью другого alert с textField
+        ac.addAction(UIAlertAction(title: "Edit self description", style: .default) { [weak self] _ in
+            let ac = UIAlertController(title: "Youself description", message: nil, preferredStyle: .alert)
             ac.addTextField(configurationHandler: { textField in
                 textField.placeholder = "Describe youself here"
             })
             ac.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
                 let maxTextLength = 120
                 guard let str = ac.textFields?.first?.text else { return }
-                self?.describingYouselfLabel.text = self?.cutString(str, withMaxLength: maxTextLength)
+                self?.youselfDescriptionLabel.text = self?.cutString(str, withMaxLength: maxTextLength)
             })
             ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self?.present(ac, animated: true)
         })
         
+        // action для выхода без действий из actionSheet
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
     
-    func cutString(_ str: String, withMaxLength len: Int) -> String {
+//    Метод для ограничения длины строки. Чтобы имя и фамилия или описание не выходили за пределы определённых размеров.
+    private func cutString(_ str: String, withMaxLength len: Int) -> String {
         if str.count > len {
             return String(str[..<str.index(str.startIndex, offsetBy: len)])
         }
         return str
     }
     
-    func getNameLabelLetters() -> String {
+//    Метод для получения инициалов из имени и фамилии
+    private func getNameLabelLetters() -> String {
         guard let strs = nameAndSurnameLabel.text?.components(separatedBy: " ") else { return "" }
         var finalStr: String = ""
         for word in strs {
@@ -102,13 +136,14 @@ class ProfileViewController: UIViewController {
         return finalStr.uppercased()
     }
     
-    
+//    Метод для инициализации viewController с помощью имени сториборда. Имена контроллера и сториборда одинаковые для того, чтобы не использовать storyboardID для инициализации.
     static func storyboardInstance() -> ProfileViewController? {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         return storyboard.instantiateInitialViewController() as? ProfileViewController
     }
 }
 
+//Расширение для ProfileViewController чтобы получить доступ к галерее и камере устройства. В info.plist добавлены описания для чего нужен доступ к камере и галерее.
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
         
@@ -121,8 +156,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             self.present(imagePickerController, animated: true, completion: nil)
         }
     }
-    
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
