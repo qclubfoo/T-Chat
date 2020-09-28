@@ -135,7 +135,6 @@ class ProfileViewController: UIViewController {
         }
         return finalStr.uppercased()
     }
-    
 //    Метод для инициализации viewController с помощью имени сториборда. Имена контроллера и сториборда одинаковые для того, чтобы не использовать storyboardID для инициализации.
     static func storyboardInstance() -> ProfileViewController? {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)

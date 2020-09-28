@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */; };
+		004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */; };
+		004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED008251E500D0093C1E2 /* ConversationCell.swift */; };
+		004ED00B251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED00A251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift */; };
+		004ED00D251E71620093C1E2 /* HardcodedConversationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED00C251E71620093C1E2 /* HardcodedConversationsList.swift */; };
 		00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA12F1250EA6E200B8B4C8 /* AppDelegate.swift */; };
 		00AA12F6250EA6E200B8B4C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA12F5250EA6E200B8B4C8 /* ViewController.swift */; };
 		00AA12F9250EA6E200B8B4C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA12F7250EA6E200B8B4C8 /* Main.storyboard */; };
@@ -17,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsListViewController.storyboard; sourceTree = "<group>"; };
+		004ED008251E500D0093C1E2 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		004ED00A251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableViewProtocol.swift; sourceTree = "<group>"; };
+		004ED00C251E71620093C1E2 /* HardcodedConversationsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedConversationsList.swift; sourceTree = "<group>"; };
 		00AA12EE250EA6E200B8B4C8 /* T-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "T-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AA12F1250EA6E200B8B4C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00AA12F5250EA6E200B8B4C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,8 +71,13 @@
 				00AA12F1250EA6E200B8B4C8 /* AppDelegate.swift */,
 				00AA12F5250EA6E200B8B4C8 /* ViewController.swift */,
 				00D583402514AFFC00243033 /* ProfileViewController.swift */,
+				004ED00C251E71620093C1E2 /* HardcodedConversationsList.swift */,
+				004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */,
+				004ED00A251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift */,
+				004ED008251E500D0093C1E2 /* ConversationCell.swift */,
 				00AA12F7250EA6E200B8B4C8 /* Main.storyboard */,
 				00D5833E2514AFD300243033 /* ProfileViewController.storyboard */,
+				004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */,
 				00AA12FA250EA6E500B8B4C8 /* Assets.xcassets */,
 				00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */,
 				00AA12FF250EA6E500B8B4C8 /* Info.plist */,
@@ -132,6 +147,7 @@
 				00AA12FB250EA6E500B8B4C8 /* Assets.xcassets in Resources */,
 				00D5833F2514AFD300243033 /* ProfileViewController.storyboard in Resources */,
 				00AA12F9250EA6E200B8B4C8 /* Main.storyboard in Resources */,
+				004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +159,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				00AA12F6250EA6E200B8B4C8 /* ViewController.swift in Sources */,
+				004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */,
+				004ED00B251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift in Sources */,
+				004ED00D251E71620093C1E2 /* HardcodedConversationsList.swift in Sources */,
 				00D583412514AFFC00243033 /* ProfileViewController.swift in Sources */,
 				00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */,
+				004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
