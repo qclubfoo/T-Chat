@@ -17,6 +17,7 @@ class ConversationsListViewController: UITableViewController {
         super.viewDidLoad()
         
         title = "Tinkoff Chat"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
 
         
     }
@@ -52,5 +53,13 @@ class ConversationsListViewController: UITableViewController {
     }
     
     
+}
+
+extension ConversationsListViewController {
+    @objc func showProfile() {
+        guard let profileVC = ProfileViewController.storyboardInstance() else { return }
+        profileVC.title = "Your profil"
+        present(profileVC, animated: true)
+    }
 }
 
