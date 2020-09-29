@@ -59,6 +59,7 @@ extension ConversationCell: ConfigurableView {
                 dateFormatter.dateFormat = "HH:mm"
             }
             dateLabel.text = dateFormatter.string(from: model.date)
+            dateLabel.isHidden = false
         }
         if model.isOnline {
             self.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)

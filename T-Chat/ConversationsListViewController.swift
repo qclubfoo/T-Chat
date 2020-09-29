@@ -10,9 +10,6 @@ import UIKit
 
 class ConversationsListViewController: UITableViewController {
     
-    let hardcodedOnlineList = getHardcodedOnlineConversationList()
-    let hardcodedOfflineList = getHardcodedOfflineConversationList()
-
     let hardcodedConversationList: [[ConversationCellModel]] = [getHardcodedOnlineConversationList(), getHardcodedOfflineConversationList()]
     
     override func viewDidLoad() {
@@ -44,6 +41,16 @@ class ConversationsListViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as? ConversationCell else { return UITableViewCell() }
         cell.configure(with: hardcodedConversationList[indexPath.section][indexPath.row])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let conversationVC = ConversationViewController.storyboardInstance() else { return }
+        let ccm = hardcodedConversationList[indexPath.section][indexPath.row]
+        var conversation = getHardcodedConversationData()
+        conversation.append(MessageCellModel(text: ccm.message, isIncomingMessage: true))
+        conversationVC.conversation = conversation
+        conversationVC.title = ccm.name
+        navigationController?.pushViewController(conversationVC, animated: true)
     }
 }
 
