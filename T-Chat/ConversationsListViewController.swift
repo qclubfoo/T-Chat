@@ -45,9 +45,12 @@ class ConversationsListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conversationVC = ConversationViewController.storyboardInstance() else { return }
+        var conversation = [MessageCellModel]()
         let ccm = hardcodedConversationList[indexPath.section][indexPath.row]
-        var conversation = getHardcodedConversationData()
-        conversation.append(MessageCellModel(text: ccm.message, isIncomingMessage: true))
+        if ccm.message != "" {
+            conversation = getHardcodedConversationData()
+            conversation.append(MessageCellModel(text: ccm.message, isIncomingMessage: true))
+        }
         conversationVC.conversation = conversation
         conversationVC.title = ccm.name
         navigationController?.pushViewController(conversationVC, animated: true)

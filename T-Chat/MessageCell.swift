@@ -10,6 +10,7 @@ import UIKit
 
 class MessageCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     
 }
@@ -19,19 +20,20 @@ extension MessageCell: ConfigurableView {
     typealias ConfigurationModel = MessageCellModel
     
     func configure(with model: MessageCellModel) {
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.textColor = .white
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.textColor = .black
         messageLabel.text = model.text
         
-        messageLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 3).isActive = true
-        messageLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -3).isActive = true
-        messageLabel.widthAnchor.constraint(lessThanOrEqualTo: self.contentView.widthAnchor, multiplier: 0.75).isActive = true
+        containerView.layer.cornerRadius = 12
+        containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 3).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -3).isActive = true
+        containerView.widthAnchor.constraint(lessThanOrEqualTo: self.contentView.widthAnchor, multiplier: 0.75).isActive = true
         if model.isIncomingMessage {
-            messageLabel.backgroundColor = .systemGreen
-            messageLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+            containerView.backgroundColor = UIColor(red: 0.875, green: 0.875, blue: 0.875, alpha: 1)
+            containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
         } else {
-            messageLabel.backgroundColor = .systemBlue
-            messageLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
+            containerView.backgroundColor = UIColor(red: 0.863, green: 0.969, blue: 0.773, alpha: 1)
+            containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         }
     }
 }
