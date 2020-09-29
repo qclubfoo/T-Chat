@@ -18,7 +18,6 @@ class ConversationsListViewController: UITableViewController {
         title = "Tinkoff Chat"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
 
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

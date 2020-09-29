@@ -14,7 +14,6 @@ class ConversationViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,7 +26,6 @@ class ConversationViewController: UITableViewController {
         cell.configure(with: currentMessage)
         return cell
     }
-
 }
 
 extension ConversationViewController {

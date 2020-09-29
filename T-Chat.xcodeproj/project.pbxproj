@@ -17,9 +17,8 @@
 		004ED01325233B6B0093C1E2 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED01225233B6B0093C1E2 /* MessageCellModel.swift */; };
 		004ED01525233FF50093C1E2 /* ConversationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004ED01425233FF50093C1E2 /* ConversationViewController.storyboard */; };
 		004ED017252348920093C1E2 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED016252348920093C1E2 /* MessageCell.swift */; };
+		004ED01D2523C9DF0093C1E2 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED01C2523C9DF0093C1E2 /* ConversationCellModel.swift */; };
 		00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA12F1250EA6E200B8B4C8 /* AppDelegate.swift */; };
-		00AA12F6250EA6E200B8B4C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA12F5250EA6E200B8B4C8 /* ViewController.swift */; };
-		00AA12F9250EA6E200B8B4C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA12F7250EA6E200B8B4C8 /* Main.storyboard */; };
 		00AA12FB250EA6E500B8B4C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AA12FA250EA6E500B8B4C8 /* Assets.xcassets */; };
 		00AA12FE250EA6E500B8B4C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */; };
 		00D5833F2514AFD300243033 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D5833E2514AFD300243033 /* ProfileViewController.storyboard */; };
@@ -37,10 +36,9 @@
 		004ED01225233B6B0093C1E2 /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
 		004ED01425233FF50093C1E2 /* ConversationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationViewController.storyboard; sourceTree = "<group>"; };
 		004ED016252348920093C1E2 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		004ED01C2523C9DF0093C1E2 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
 		00AA12EE250EA6E200B8B4C8 /* T-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "T-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AA12F1250EA6E200B8B4C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		00AA12F5250EA6E200B8B4C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		00AA12F8250EA6E200B8B4C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00AA12FA250EA6E500B8B4C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00AA12FD250EA6E500B8B4C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00AA12FF250EA6E500B8B4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +57,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		004ED0182523C9100093C1E2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				00D5833E2514AFD300243033 /* ProfileViewController.storyboard */,
+				004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */,
+				004ED01425233FF50093C1E2 /* ConversationViewController.storyboard */,
+				00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		004ED01A2523C9570093C1E2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				00D583402514AFFC00243033 /* ProfileViewController.swift */,
+				004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */,
+				004ED00E25233A8E0093C1E2 /* ConversationViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		004ED01B2523C97D0093C1E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				004ED008251E500D0093C1E2 /* ConversationCell.swift */,
+				004ED016252348920093C1E2 /* MessageCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		004ED01E2523CA120093C1E2 /* Models & Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				004ED00A251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift */,
+				004ED01225233B6B0093C1E2 /* MessageCellModel.swift */,
+				004ED01C2523C9DF0093C1E2 /* ConversationCellModel.swift */,
+			);
+			name = "Models & Protocols";
+			sourceTree = "<group>";
+		};
+		004ED01F2523CA4C0093C1E2 /* HardcodedData */ = {
+			isa = PBXGroup;
+			children = (
+				004ED00C251E71620093C1E2 /* HardcodedConversationsList.swift */,
+				004ED01025233B2A0093C1E2 /* HardcodedConversationData.swift */,
+			);
+			name = HardcodedData;
+			sourceTree = "<group>";
+		};
 		00AA12E5250EA6E200B8B4C8 = {
 			isa = PBXGroup;
 			children = (
@@ -79,22 +126,12 @@
 			isa = PBXGroup;
 			children = (
 				00AA12F1250EA6E200B8B4C8 /* AppDelegate.swift */,
-				00AA12F5250EA6E200B8B4C8 /* ViewController.swift */,
-				00D583402514AFFC00243033 /* ProfileViewController.swift */,
-				004ED00C251E71620093C1E2 /* HardcodedConversationsList.swift */,
-				004ED01025233B2A0093C1E2 /* HardcodedConversationData.swift */,
-				004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */,
-				004ED00A251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift */,
-				004ED00E25233A8E0093C1E2 /* ConversationViewController.swift */,
-				004ED008251E500D0093C1E2 /* ConversationCell.swift */,
-				004ED016252348920093C1E2 /* MessageCell.swift */,
-				004ED01225233B6B0093C1E2 /* MessageCellModel.swift */,
-				00AA12F7250EA6E200B8B4C8 /* Main.storyboard */,
-				00D5833E2514AFD300243033 /* ProfileViewController.storyboard */,
-				004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */,
-				004ED01425233FF50093C1E2 /* ConversationViewController.storyboard */,
+				004ED01F2523CA4C0093C1E2 /* HardcodedData */,
+				004ED01E2523CA120093C1E2 /* Models & Protocols */,
+				004ED01B2523C97D0093C1E2 /* Views */,
+				004ED01A2523C9570093C1E2 /* ViewControllers */,
+				004ED0182523C9100093C1E2 /* Storyboards */,
 				00AA12FA250EA6E500B8B4C8 /* Assets.xcassets */,
-				00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */,
 				00AA12FF250EA6E500B8B4C8 /* Info.plist */,
 			);
 			path = "T-Chat";
@@ -162,7 +199,6 @@
 				00AA12FE250EA6E500B8B4C8 /* LaunchScreen.storyboard in Resources */,
 				00AA12FB250EA6E500B8B4C8 /* Assets.xcassets in Resources */,
 				00D5833F2514AFD300243033 /* ProfileViewController.storyboard in Resources */,
-				00AA12F9250EA6E200B8B4C8 /* Main.storyboard in Resources */,
 				004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,7 +211,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				004ED017252348920093C1E2 /* MessageCell.swift in Sources */,
-				00AA12F6250EA6E200B8B4C8 /* ViewController.swift in Sources */,
 				004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */,
 				004ED00F25233A8E0093C1E2 /* ConversationViewController.swift in Sources */,
 				004ED00B251E5DEB0093C1E2 /* ConfigurableViewProtocol.swift in Sources */,
@@ -185,20 +220,13 @@
 				004ED01325233B6B0093C1E2 /* MessageCellModel.swift in Sources */,
 				00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */,
 				004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */,
+				004ED01D2523C9DF0093C1E2 /* ConversationCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		00AA12F7250EA6E200B8B4C8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00AA12F8250EA6E200B8B4C8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
