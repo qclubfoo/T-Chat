@@ -13,6 +13,8 @@ class ConversationsListViewController: UITableViewController {
     let hardcodedOnlineList = getHardcodedOnlineConversationList()
     let hardcodedOfflineList = getHardcodedOfflineConversationList()
 
+    let hardcodedConversationList: [[ConversationCellModel]] = [getHardcodedOnlineConversationList(), getHardcodedOfflineConversationList()]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,24 +37,14 @@ class ConversationsListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return hardcodedOnlineList.count
-        } else {
-            return hardcodedOfflineList.count
-        }
+        return hardcodedConversationList[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as? ConversationCell else { return UITableViewCell() }
-        if indexPath.section == 0 {
-            cell.configure(with: hardcodedOnlineList[indexPath.row])
-        } else {
-            cell.configure(with: hardcodedOfflineList[indexPath.row])
-        }
+        cell.configure(with: hardcodedConversationList[indexPath.section][indexPath.row])
         return cell
     }
-    
-    
 }
 
 extension ConversationsListViewController {

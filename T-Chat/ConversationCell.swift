@@ -37,30 +37,31 @@ extension ConversationCell: ConfigurableView {
     typealias ConfigurationModel = ConversationCellModel
     
     func configure(with model: ConversationCellModel) {
-        let dateFormatter = DateFormatter()
-        let calendar = Calendar.current
-
-        if calendar.isDateInYesterday(model.date) {
-            dateFormatter.dateFormat = "dd MMM"
-
-        } else {
-            dateFormatter.dateFormat = "HH:mm"
-        }
         
         nameLabel.text = model.name
-        dateLabel.text = dateFormatter.string(from: model.date)
         if model.message == "" {
+            dateLabel.isHidden = true
             lastMessageLabel.text = "No messages yet"
             lastMessageLabel.font = UIFont(name: "Bradley hand", size: lastMessageLabel.font.pointSize)
         } else {
+            if model.hasUnreadedMessages {
+                lastMessageLabel.font = UIFont.systemFont(ofSize: lastMessageLabel.font.pointSize, weight: .bold)
+            }
             lastMessageLabel.text = model.message
+            
+            let dateFormatter = DateFormatter()
+            let calendar = Calendar.current
+
+            if calendar.isDateInYesterday(model.date) {
+                dateFormatter.dateFormat = "dd MMM"
+
+            } else {
+                dateFormatter.dateFormat = "HH:mm"
+            }
+            dateLabel.text = dateFormatter.string(from: model.date)
         }
         if model.isOnline {
             self.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
-        }
-        // Прописаны два условия, т.к. логично, что если сообщений нет, то непрочитанных быть не может. Напирмер так message == "" и hasUnreadedMessages == "true"
-        if model.message != "" && model.hasUnreadedMessages {
-            lastMessageLabel.font = UIFont.systemFont(ofSize: lastMessageLabel.font.pointSize, weight: .bold)
         }
     }
 }
