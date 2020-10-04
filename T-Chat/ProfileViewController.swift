@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ProfileViewController: UIViewController {
 
@@ -17,6 +18,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameAndSurnameLabel: UILabel!
     @IBOutlet weak var youselfDescriptionLabel: UILabel!
+
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -84,9 +89,8 @@ class ProfileViewController: UIViewController {
                 
             })
             ac.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
-                let maxTextLength = 31
                 guard let str = ac.textFields?.first?.text else { return }
-                self?.nameAndSurnameLabel.text = self?.cutString(str, withMaxLength: maxTextLength)
+                self?.nameAndSurnameLabel.text = str
                 self?.nameLabel.text = self?.getNameLabelLetters()
             })
             ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -100,9 +104,8 @@ class ProfileViewController: UIViewController {
                 textField.placeholder = "Describe youself here"
             })
             ac.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
-                let maxTextLength = 120
                 guard let str = ac.textFields?.first?.text else { return }
-                self?.youselfDescriptionLabel.text = self?.cutString(str, withMaxLength: maxTextLength)
+                self?.youselfDescriptionLabel.text = str
             })
             ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self?.present(ac, animated: true)
@@ -111,14 +114,6 @@ class ProfileViewController: UIViewController {
         // action для выхода без действий из actionSheet
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true)
-    }
-    
-//    Метод для ограничения длины строки. Чтобы имя и фамилия или описание не выходили за пределы определённых размеров.
-    private func cutString(_ str: String, withMaxLength len: Int) -> String {
-        if str.count > len {
-            return String(str[..<str.index(str.startIndex, offsetBy: len)])
-        }
-        return str
     }
     
 //    Метод для получения инициалов из имени и фамилии
@@ -145,7 +140,7 @@ class ProfileViewController: UIViewController {
 //Расширение для ProfileViewController чтобы получить доступ к галерее и камере устройства. В info.plist добавлены описания для чего нужен доступ к камере и галерее.
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
-        
+        checkCameraAccess()
         //Check is source type available
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
             let imagePickerController = UIImagePickerController()
@@ -166,5 +161,30 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             self?.nameLabel.isHidden = true
         }
     }
+    
+    func checkCameraAccess() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied:
+            print("Denied, request permission from settings")
+            presentCameraSettings()
+        default:
+            print("Access granted or can't be changed")
+        }
+    }
+    
+    func presentCameraSettings() {
+        let ac = UIAlertController(title: "Error",
+                                      message: "Camera access is denied",
+                                      preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .default))
+        ac.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:])
+            }
+        })
+
+        present(ac, animated: true)
+    }
+
     
 }
