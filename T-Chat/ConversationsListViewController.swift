@@ -60,31 +60,7 @@ class ConversationsListViewController: UITableViewController {
 extension ConversationsListViewController {
     @objc func showProfile() {
         guard let profileVC = ProfileViewController.storyboardInstance() else { return }
-//        let navBar = UINavigationBar()
-//        profileVC.view.addSubview(navBar)
-//
-//        navBar.translatesAutoresizingMaskIntoConstraints = false
-//        navBar.leadingAnchor.constraint(equalTo: profileVC.view.leadingAnchor).isActive = true
-//        navBar.trailingAnchor.constraint(equalTo: profileVC.view.trailingAnchor).isActive = true
-//        navBar.topAnchor.constraint(equalTo: profileVC.view.topAnchor).isActive = true
-//
-//        navBar.prefersLargeTitles = true
-//        navBar.backgroundColor = .black
-//
-//        let titleLabel = UILabel()
-//        titleLabel.text = "My profile"
-//        navBar.addSubview(titleLabel)
-//
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        titleLabel.centerYAnchor.constraint(equalTo: navBar.centerYAnchor).isActive = true
-//        titleLabel.centerXAnchor.constraint(equalTo: navBar.centerXAnchor).isActive = true
-//
-//        profileVC.navigationItem.title = "My prof"
-//        profileVC.title = "My profile"
         present(profileVC, animated: true)
-//        profileVC.modalPresentationStyle = .popover
-//        navigationController?.pushViewController(profileVC, animated: true)
-//        navigationController?.show(profileVC, sender: navigationItem.rightBarButtonItem)
     }
 }
 

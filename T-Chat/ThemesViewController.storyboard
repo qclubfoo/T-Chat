@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FNn-Ij-vvO">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="eiV-zP-pFV">
+            <objects>
+                <viewController id="FNn-Ij-vvO" customClass="ViewController" customModule="T_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eTy-O0-noH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="R69-eC-fPh">
+                                <rect key="frame" x="51.666666666666657" y="220" width="310.66666666666674" height="456"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eoc-MR-g7A">
+                                        <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="135.33333333333334"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUH-XG-W29">
+                                                <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="NSc-Ri-vDh"/>
+                                                </constraints>
+                                                <state key="normal" image="ClassicTheme"/>
+                                                <state key="selected" image="ClassicTheme"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN1-O9-igM">
+                                                <rect key="frame" x="128" y="115" width="54.666666666666657" height="20.333333333333343"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="iyN-Au-CrB" appends="YES" id="tZt-oS-2CG"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="X0R-eb-ffE">
+                                        <rect key="frame" x="0.0" y="160.33333333333331" width="310.66666666666669" height="135.33333333333331"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OY5-km-NJL">
+                                                <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="hHF-Q7-QKu"/>
+                                                </constraints>
+                                                <state key="normal" image="DayTheme"/>
+                                                <state key="selected" image="DayTheme"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuS-ci-vka">
+                                                <rect key="frame" x="140.66666666666669" y="115" width="29.666666666666657" height="20.333333333333343"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="i2l-RO-Ujn" appends="YES" id="jYR-dG-XfJ"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="uYd-YK-7Dt">
+                                        <rect key="frame" x="0.0" y="320.66666666666663" width="310.66666666666669" height="135.33333333333337"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGx-DT-D0h">
+                                                <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="sIQ-g4-fdi"/>
+                                                </constraints>
+                                                <state key="normal" image="NightTheme"/>
+                                                <state key="selected" image="NightTheme"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFn-DN-xLh">
+                                                <rect key="frame" x="134.66666666666669" y="115" width="41.666666666666657" height="20.333333333333343"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Uo3-Vg-kRx" appends="YES" id="n6G-vh-kjM"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="R69-eC-fPh" firstAttribute="centerY" secondItem="eTy-O0-noH" secondAttribute="centerY" id="0eB-nM-0FV"/>
+                            <constraint firstItem="R69-eC-fPh" firstAttribute="centerX" secondItem="eTy-O0-noH" secondAttribute="centerX" id="HB1-co-VOv"/>
+                            <constraint firstItem="R69-eC-fPh" firstAttribute="width" secondItem="eTy-O0-noH" secondAttribute="width" multiplier="0.75" id="qKW-oU-Jvn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ndn-sU-jgI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gyH-rD-zXp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iyN-Au-CrB" userLabel="ClassicLabelTap"/>
+                <tapGestureRecognizer id="i2l-RO-Ujn" userLabel="DayLabelTap"/>
+                <tapGestureRecognizer id="Uo3-Vg-kRx" userLabel="NightLabelTap"/>
+            </objects>
+            <point key="canvasLocation" x="-287" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ClassicTheme" width="655" height="200"/>
+        <image name="DayTheme" width="665" height="200"/>
+        <image name="NightTheme" width="665" height="200"/>
+    </resources>
+</document>
