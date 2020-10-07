@@ -16,9 +16,27 @@ class ConversationsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        applyCurrentTheme()
+        
         title = "Tinkoff Chat"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfile))
+        
+        if #available(iOS 13.0, *) {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showThemeVC))
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "downloadedGear"), style: .plain, target: self, action: #selector(showThemeVC))
+        }
 
+    }
+    
+    @objc func showThemeVC() {
+        guard let themesVC = ThemesViewController.storyboardInstance() else { return }
+//        themesVC.delegate = self
+        themesVC.closure = {
+            print("closure done")
+            self.view.backgroundColor = Theme.current.textColor
+        }
+        navigationController?.pushViewController(themesVC, animated: true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,6 +73,18 @@ class ConversationsListViewController: UITableViewController {
         conversationVC.title = ccm.name
         navigationController?.pushViewController(conversationVC, animated: true)
     }
+    
+}
+
+extension ConversationsListViewController: ThemesPickerDelegate {
+    func applyCurrentTheme() {
+        print("applying theme here")
+        UIApplication.shared.delegate?.window??.tintColor = Theme.current.mainColor
+        view.backgroundColor = Theme.current.backgroundColor
+        tableView.reloadData()
+    }
+    
+
 }
 
 extension ConversationsListViewController {

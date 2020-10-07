@@ -18,7 +18,7 @@ class ConversationCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        backgroundColor = .white
+        backgroundColor = Theme.current.backgroundColor
         lastMessageLabel.font = .systemFont(ofSize: lastMessageLabel.font.pointSize)
     }
     
@@ -29,6 +29,12 @@ extension ConversationCell: ConfigurableView {
     typealias ConfigurationModel = ConversationCellModel
     
     func configure(with model: ConversationCellModel) {
+        
+        let fontColor = Theme.current.textColor
+        
+        for label in [nameLabel, lastMessageLabel, dateLabel] {
+            label?.textColor = fontColor
+        }
         
         nameLabel.text = model.name
         if model.message == "" {
