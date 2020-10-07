@@ -35,7 +35,7 @@
                                                 <rect key="frame" x="93" y="108" width="54.5" height="20.5"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="iyN-Au-CrB" appends="YES" id="tZt-oS-2CG"/>
@@ -58,7 +58,7 @@
                                                 <rect key="frame" x="105.5" y="108" width="29.5" height="20.5"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="i2l-RO-Ujn" appends="YES" id="jYR-dG-XfJ"/>
@@ -81,7 +81,7 @@
                                                 <rect key="frame" x="99.5" y="108" width="41.5" height="20.5"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="Uo3-Vg-kRx" appends="YES" id="n6G-vh-kjM"/>

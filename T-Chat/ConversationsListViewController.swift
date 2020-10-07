@@ -29,16 +29,6 @@ class ConversationsListViewController: UITableViewController {
 
     }
     
-    @objc func showThemeVC() {
-        guard let themesVC = ThemesViewController.storyboardInstance() else { return }
-//        themesVC.delegate = self
-        themesVC.closure = {
-            print("closure done")
-            self.view.backgroundColor = Theme.current.textColor
-        }
-        navigationController?.pushViewController(themesVC, animated: true)
-    }
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -78,13 +68,30 @@ class ConversationsListViewController: UITableViewController {
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func applyCurrentTheme() {
-        print("applying theme here")
-        UIApplication.shared.delegate?.window??.tintColor = Theme.current.mainColor
+        UITableViewCell.appearance().backgroundColor = Theme.current.backgroundColor
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = Theme.current.textColor
         view.backgroundColor = Theme.current.backgroundColor
         tableView.reloadData()
     }
-    
+}
 
+extension ConversationsListViewController {
+    @objc func showThemeVC() {
+        guard let themesVC = ThemesViewController.storyboardInstance() else { return }
+//        themesVC.delegate = self
+// use line above the comment for using delegate instead of closure. Make sure you comment line under.
+        themesVC.closure = getClosure()
+        navigationController?.pushViewController(themesVC, animated: true)
+    }
+    
+    private func getClosure() -> ()->() {
+        return { [weak self] in
+            UITableViewCell.appearance().backgroundColor = Theme.current.backgroundColor
+            UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = Theme.current.textColor
+            self?.view.backgroundColor = Theme.current.backgroundColor
+            self?.tableView.reloadData()
+        }
+    }
 }
 
 extension ConversationsListViewController {

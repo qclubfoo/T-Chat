@@ -19,6 +19,10 @@ class ConversationCell: UITableViewCell {
         super.prepareForReuse()
 
         backgroundColor = Theme.current.backgroundColor
+        lastMessageLabel.textColor = Theme.current.textColor
+        dateLabel.textColor = Theme.current.textColor
+        nameLabel.textColor = Theme.current.textColor
+        
         lastMessageLabel.font = .systemFont(ofSize: lastMessageLabel.font.pointSize)
     }
     
@@ -29,12 +33,6 @@ extension ConversationCell: ConfigurableView {
     typealias ConfigurationModel = ConversationCellModel
     
     func configure(with model: ConversationCellModel) {
-        
-        let fontColor = Theme.current.textColor
-        
-        for label in [nameLabel, lastMessageLabel, dateLabel] {
-            label?.textColor = fontColor
-        }
         
         nameLabel.text = model.name
         if model.message == "" {
@@ -60,7 +58,10 @@ extension ConversationCell: ConfigurableView {
             dateLabel.isHidden = false
         }
         if model.isOnline {
-            self.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
+            self.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 93/255, alpha: 1)
+            self.lastMessageLabel.textColor = .black
+            self.dateLabel.textColor = .black
+            self.nameLabel.textColor = .black
         }
     }
 }

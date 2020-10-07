@@ -25,38 +25,16 @@ class ProfileViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-//        Задание 3.2
-//        В данный момент нет ни view, ни outlets. Соответственно во всех outlets значение будет nil, но т.к. они раскрываются через force unwrap, то есть без проверки на nil, при обращении к outlet saveButton значение которой в данный момент nil, программа крашится.
-//        print("ViewFrame is \(saveButton.frame)")
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        Задание 3.3
-        print("In \(#function)\nSave button frame is \(saveButton.frame)\n")
-        
+
         saveButton.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
-        
         profileImageView.isHidden = true
-        
         editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
-
         nameLabel.text = getNameLabelLetters()
-        
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        Задание 3.4
-//        Frame в данном методе отличен от frame в методе viewDidLoad() т.к. в методе viewDidLoad() все размеры берутся из storyboard, а после метода viewDidLoad() выстраиваются constraints в методах viewWillLayoutSubviews() и viewDidLayoutSubviews(), то есть изменяются размеры view, а только потом, с уже полностью актуальными размерами, view появляется на экране. Когда отрабатывает метод viewDidAppear(_:animated), нам поянто, что view уже уже на экране с актуальными размерами.
-        print("In \(#function)\nSave button frame is \(saveButton.frame)\n")
-
-    }
-    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

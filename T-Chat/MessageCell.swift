@@ -21,18 +21,20 @@ extension MessageCell: ConfigurableView {
     
     func configure(with model: MessageCellModel) {
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.textColor = .black
+        messageLabel.textColor = Theme.current.textColor
         messageLabel.text = model.text
         
         containerView.layer.cornerRadius = 12
+        containerView.layer.borderColor = Theme.current.messageBorderColor
+        containerView.layer.borderWidth = 1
         containerView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 3).isActive = true
         containerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -3).isActive = true
         containerView.widthAnchor.constraint(lessThanOrEqualTo: self.contentView.widthAnchor, multiplier: 0.75).isActive = true
         if model.isIncomingMessage {
-            containerView.backgroundColor = UIColor(red: 0.875, green: 0.875, blue: 0.875, alpha: 1)
+            containerView.backgroundColor = Theme.current.incomingMessageColor
             containerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
         } else {
-            containerView.backgroundColor = UIColor(red: 0.863, green: 0.969, blue: 0.773, alpha: 1)
+            containerView.backgroundColor = Theme.current.outgoingMessageColor
             containerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         }
     }
