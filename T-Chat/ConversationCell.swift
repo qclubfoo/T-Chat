@@ -31,7 +31,7 @@ extension ConversationCell: ConfigurableView {
     func configure(with model: ConversationCellModel) {
         
         nameLabel.text = model.name
-        if model.message == "" {
+        if model.message.isEmpty {
             dateLabel.isHidden = true
             lastMessageLabel.text = "No messages yet"
             lastMessageLabel.font = UIFont(name: "Bradley hand", size: lastMessageLabel.font.pointSize)
@@ -44,7 +44,7 @@ extension ConversationCell: ConfigurableView {
             let dateFormatter = DateFormatter()
             let calendar = Calendar.current
 
-            if calendar.isDateInYesterday(model.date) {
+            if !calendar.isDateInToday(model.date) {
                 dateFormatter.dateFormat = "dd MMM"
 
             } else {
