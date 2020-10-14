@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		003BC9EC252DAA99007F982E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BC9EB252DAA99007F982E /* Theme.swift */; };
 		003BC9EE252DCD98007F982E /* ThemesPickerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BC9ED252DCD98007F982E /* ThemesPickerDelegateProtocol.swift */; };
+		003BCA182534573B007F982E /* exampleView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003BCA172534573B007F982E /* exampleView.storyboard */; };
+		003BCA1A2534589E007F982E /* exampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BCA192534589E007F982E /* exampleView.swift */; };
 		004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */; };
 		004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */; };
 		004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED008251E500D0093C1E2 /* ConversationCell.swift */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		003BC9EB252DAA99007F982E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		003BC9ED252DCD98007F982E /* ThemesPickerDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegateProtocol.swift; sourceTree = "<group>"; };
+		003BCA172534573B007F982E /* exampleView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = exampleView.storyboard; sourceTree = "<group>"; };
+		003BCA192534589E007F982E /* exampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exampleView.swift; sourceTree = "<group>"; };
 		004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsListViewController.storyboard; sourceTree = "<group>"; };
 		004ED008251E500D0093C1E2 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 				004ED020252B20A40093C1E2 /* ThemesViewController.storyboard */,
 				004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */,
 				004ED01425233FF50093C1E2 /* ConversationViewController.storyboard */,
+				003BCA172534573B007F982E /* exampleView.storyboard */,
 				00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -84,6 +89,7 @@
 				004ED024252B6E4D0093C1E2 /* ThemesViewController.swift */,
 				004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */,
 				004ED00E25233A8E0093C1E2 /* ConversationViewController.swift */,
+				003BCA192534589E007F982E /* exampleView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -209,6 +215,7 @@
 			files = (
 				004ED01525233FF50093C1E2 /* ConversationViewController.storyboard in Resources */,
 				004ED021252B20A40093C1E2 /* ThemesViewController.storyboard in Resources */,
+				003BCA182534573B007F982E /* exampleView.storyboard in Resources */,
 				00AA12FE250EA6E500B8B4C8 /* LaunchScreen.storyboard in Resources */,
 				00AA12FB250EA6E500B8B4C8 /* Assets.xcassets in Resources */,
 				00D5833F2514AFD300243033 /* ProfileViewController.storyboard in Resources */,
@@ -232,6 +239,7 @@
 				004ED00D251E71620093C1E2 /* HardcodedConversationsList.swift in Sources */,
 				004ED01125233B2A0093C1E2 /* HardcodedConversationData.swift in Sources */,
 				00D583412514AFFC00243033 /* ProfileViewController.swift in Sources */,
+				003BCA1A2534589E007F982E /* exampleView.swift in Sources */,
 				004ED01325233B6B0093C1E2 /* MessageCellModel.swift in Sources */,
 				00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */,
 				004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */,
