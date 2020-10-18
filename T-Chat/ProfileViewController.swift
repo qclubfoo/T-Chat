@@ -12,6 +12,7 @@ import AVFoundation
 class ProfileViewController: UIViewController {
     
     lazy var activityIndicator = UIActivityIndicatorView()
+    lazy var manager = GCDManager()
     var currentFullName: String = ""
     var currentAboutYouself: String = ""
 
@@ -42,7 +43,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getProfileInfo()
+        activityIndicator.startAnimating()
+        manager.getProfileInfo { [weak self] profile in
+            if !profile.fullName.isEmpty {
+                self?.nameAndSurnameTextField.text = profile.fullName
+            }
+            if !profile.aboutYouself.isEmpty {
+                self?.aboutYouselfTextView.text = profile.aboutYouself
+            }
+            if let image = profile.profileImage {
+                self?.profileImageView.image = image
+                self?.nameLabel.isHidden = true
+                self?.profileImageView.isHidden = false
+            }
+            self?.activityIndicator.stopAnimating()
+        }
         
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
@@ -117,16 +132,31 @@ class ProfileViewController: UIViewController {
     
     @objc func gcdButtonTapped() {
         editProfileOff()
-        guard let fullName = nameAndSurnameTextField.text else { return }
-        if fullName != currentFullName {
-            saveStringData(nameAndSurnameTextField.text ?? "", withFileName: "fullName")
+        activityIndicator.startAnimating()
+        let manager = GCDManager()
+        
+        let fullName = nameAndSurnameTextField.text
+        let aboutYouself = aboutYouselfTextView.text
+        let profileImage = profileImageView.image
+        
+        func completionHandler(errors: String) -> Void {
+            let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            if errors.isEmpty {
+                ac.title = "All data was saved correctly"
+            } else {
+                ac.title = "Error"
+                ac.message = errors
+                ac.addAction(UIAlertAction(title: "Retry", style: .default) { _ in
+                    manager.saveProfileInfo(fullName: fullName, aboutYouself: aboutYouself, profileImage: profileImage, completionHandler: completionHandler(errors:))
+                })
+            }
+            present(ac, animated: true)
+            activityIndicator.stopAnimating()
         }
-        if aboutYouselfTextView.text != currentAboutYouself {
-            saveStringData(aboutYouselfTextView.text, withFileName: "aboutYouSelf")
-        }
-        if let profilePhoto = profileImageView.image {
-            saveImageData(profilePhoto)
-        }
+        
+        manager.saveProfileInfo(fullName: fullName, aboutYouself: aboutYouself, profileImage: profileImage, completionHandler: completionHandler(errors:))
+        
     }
     
     @objc func operationalButtonTapped() {
@@ -140,112 +170,6 @@ class ProfileViewController: UIViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
       self.view.frame.origin.y = 0
-    }
-    
-    func getProfileInfo() {
-        let documentsDirectory = getDocumentsDirectory()
-        let fullNamePath = documentsDirectory.appendingPathComponent("fullName").appendingPathExtension("txt")
-        let aboutYouselfPath = documentsDirectory.appendingPathComponent("aboutYouSelf").appendingPathExtension("txt")
-        let profilePhotoPath = documentsDirectory.appendingPathComponent("profilePhoto").appendingPathExtension("png")
-        activityIndicator.startAnimating()
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            do {
-                let fullNameData = try Data(contentsOf: fullNamePath)
-                if let fullName = String(data: fullNameData, encoding: .utf16) {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.nameAndSurnameTextField.text = fullName
-                        self?.nameLabel.text = self?.getNameLabelLetters()
-                    }
-                }
-                let aboutYouselfData = try Data(contentsOf: aboutYouselfPath)
-                if let aboutYouself = String(data: aboutYouselfData, encoding: .utf16) {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.aboutYouselfTextView.text = aboutYouself
-                    }
-                }
-                let profileImageData = try Data(contentsOf: profilePhotoPath)
-                if let profilePhoto = UIImage(data: profileImageData) {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.profileImageView.image = profilePhoto
-                        self?.profileImageView.isHidden = false
-                        self?.nameLabel.isHidden = true  
-                    }
-                }
-                DispatchQueue.main.async { [weak self] in
-                    self?.activityIndicator.stopAnimating()
-                }
-            } catch {
-                print("can't read data")
-                DispatchQueue.main.async { [weak self] in
-                    self?.activityIndicator.stopAnimating()
-                }
-            }
-        }
-    }
-    
-    func saveStringData(_ text: String, withFileName name: String) {
-        activityIndicator.startAnimating()
-        let ac = getDefaultAlertController(withTitle: "Data was saved", andMessage: nil)
-        let queue = DispatchQueue.global(qos: .default)
-        let path = getDocumentsDirectory().appendingPathComponent(name).appendingPathExtension("txt")
-        if let data = text.data(using: .utf16) {
-            queue.async {
-                do {
-                    try data.write(to: path)
-                    DispatchQueue.main.async { [weak self] in
-                        self?.activityIndicator.stopAnimating()
-                        self?.present(ac, animated: true)
-                    }
-                                    } catch {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.activityIndicator.stopAnimating()
-                        ac.title = "Error"
-                        ac.message = "Couldn't save data"
-                        ac.addAction(UIAlertAction(title: "Repeat", style: .default, handler: { [weak self] _ in
-                            self?.saveStringData(text, withFileName: name)
-                        }))
-                    }
-                }
-            }
-        }
-    }
-    
-    func saveImageData(_ image: UIImage) {
-        activityIndicator.startAnimating()
-        let ac = getDefaultAlertController(withTitle: "Data was saved", andMessage: nil)
-        let queue = DispatchQueue.global(qos: .default)
-        let path = getDocumentsDirectory().appendingPathComponent("profilePhoto").appendingPathExtension("png")
-        if let data = image.pngData() {
-            queue.async {
-                do {
-                    try data.write(to: path)
-                    DispatchQueue.main.async { [weak self] in
-                        self?.activityIndicator.stopAnimating()
-                        self?.present(ac, animated: true)
-                    }
-                } catch {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.activityIndicator.stopAnimating()
-                        ac.title = "Error"
-                        ac.message = "Couldn't save data"
-                        ac.addAction(UIAlertAction(title: "Repeat", style: .default, handler: { [weak self] _ in
-                            self?.saveImageData(image)
-                        }))
-                    }
-                }
-            }
-        }
-    }
-    
-    func getDefaultAlertController(withTitle title: String, andMessage message: String?) -> UIAlertController {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Ok", style: .default))
-        return ac
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
     
     private func editProfileOn() {
