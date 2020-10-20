@@ -8,30 +8,6 @@
 
 import UIKit
 
-enum Result {
-    case sucess
-    case fail
-}
-
-struct StringData {
-    var str: String = ""
-    var result: Result = .sucess
-    var errorDescription: String = ""
-}
-
-struct ImageData {
-    var image: UIImage?
-    var result: Result = .sucess
-    var errorDescription: String = ""
-}
-
-struct ProfileInfo {
-    var fullName: String = ""
-    var aboutYouself: String = ""
-    var profileImage: UIImage?
-}
-
-
 class GCDManager {
     
     func saveProfileInfo(fullName: String?, aboutYouself: String?, profileImage: UIImage?, completionHandler completion: @escaping (String)->()) {
@@ -76,9 +52,8 @@ class GCDManager {
             if let data = str.data(using: .utf16) {
                 do {
                     try data.write(to: filePath)
-                    completeion(.sucess)
+                    completeion(.success)
                 } catch {
-                    print("Can't save file to \(filePath)")
                     completeion(.fail)
                 }
             } else {
@@ -93,14 +68,11 @@ class GCDManager {
             if let data = img.pngData() {
                 do {
                     try data.write(to: filePath)
-                    completeion(.sucess)
-                    print("saved")
+                    completeion(.success)
                 } catch {
-                    print("Can't save file to \(filePath)")
                     completeion(.fail)
                 }
             } else {
-                print("Can't convert image to data")
                 completeion(.fail)
             }
         }
@@ -115,21 +87,21 @@ class GCDManager {
         
         profileGroup.enter()
         getString(fromFileWithName: "fullName") { result in
-            if result.result == .sucess {
+            if result.result == .success {
                 recievedFullName = result.str
             }
             profileGroup.leave()
         }
         profileGroup.enter()
         getString(fromFileWithName: "aboutYouself") { result in
-            if result.result == .sucess {
+            if result.result == .success {
                 recievedAboutYouself = result.str
             }
             profileGroup.leave()
         }
         profileGroup.enter()
         getImage(fromFileWithName: "profileImage") { result in
-            if result.result == .sucess {
+            if result.result == .success {
                 recievedProfileImage = result.image
             }
             profileGroup.leave()

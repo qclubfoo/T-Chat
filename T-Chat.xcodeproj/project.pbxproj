@@ -12,6 +12,8 @@
 		003BCA182534573B007F982E /* exampleView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003BCA172534573B007F982E /* exampleView.storyboard */; };
 		003BCA1A2534589E007F982E /* exampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BCA192534589E007F982E /* exampleView.swift */; };
 		00451BE4253CDDE0003925B9 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE3253CDDE0003925B9 /* GCDManager.swift */; };
+		00451BE7253ED8C6003925B9 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE6253ED8C6003925B9 /* OperationManager.swift */; };
+		00451BE9253F0F88003925B9 /* Multithreading managers structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */; };
 		004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */; };
 		004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */; };
 		004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED008251E500D0093C1E2 /* ConversationCell.swift */; };
@@ -38,6 +40,8 @@
 		003BCA172534573B007F982E /* exampleView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = exampleView.storyboard; sourceTree = "<group>"; };
 		003BCA192534589E007F982E /* exampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exampleView.swift; sourceTree = "<group>"; };
 		00451BE3253CDDE0003925B9 /* GCDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
+		00451BE6253ED8C6003925B9 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
+		00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multithreading managers structs.swift"; sourceTree = "<group>"; };
 		004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsListViewController.storyboard; sourceTree = "<group>"; };
 		004ED008251E500D0093C1E2 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				00451BE3253CDDE0003925B9 /* GCDManager.swift */,
+				00451BE6253ED8C6003925B9 /* OperationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				004ED01C2523C9DF0093C1E2 /* ConversationCellModel.swift */,
 				003BC9EB252DAA99007F982E /* Theme.swift */,
 				003BC9ED252DCD98007F982E /* ThemesPickerDelegateProtocol.swift */,
+				00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */,
 			);
 			name = "Models & Protocols";
 			sourceTree = "<group>";
@@ -254,8 +260,10 @@
 				003BCA1A2534589E007F982E /* exampleView.swift in Sources */,
 				004ED01325233B6B0093C1E2 /* MessageCellModel.swift in Sources */,
 				00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */,
+				00451BE9253F0F88003925B9 /* Multithreading managers structs.swift in Sources */,
 				004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */,
 				004ED025252B6E4D0093C1E2 /* ThemesViewController.swift in Sources */,
+				00451BE7253ED8C6003925B9 /* OperationManager.swift in Sources */,
 				004ED01D2523C9DF0093C1E2 /* ConversationCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

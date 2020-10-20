@@ -94,7 +94,7 @@
                                     <constraint firstAttribute="height" constant="41" id="ySz-aA-ozL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <state key="normal" title="Operational">
+                                <state key="normal" title="Operation">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                 </state>
                             </button>
