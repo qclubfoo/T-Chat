@@ -46,7 +46,46 @@ class OperationManager {
         completion(errors)
     }
     
-    func save(text str: String, toFileWithName fileName: String, completion: (Result)->()) {
+    func getProfileInfo(completionHandler completion: @escaping (ProfileInfo) -> ()) {
+        var recievedFullName: String = ""
+        var recievedAboutYouself: String = ""
+        var recievedProfileImage: UIImage?
+        
+        let profileInfoQueue = OperationQueue()
+        
+        profileInfoQueue.addOperation { [weak self] in
+            self?.getString(fromFileWithName: "fullName") { result in
+                if result.result == .success {
+                    recievedFullName = result.str
+                }
+            }
+        }
+        profileInfoQueue.addOperation { [weak self] in
+            self?.getString(fromFileWithName: "aboutYouself") { result in
+                if result.result == .success {
+                    recievedAboutYouself = result.str
+                }
+            }
+        }
+        profileInfoQueue.addOperation { [weak self] in
+            self?.getImage(fromFileWithName: "profileImage") { result in
+                if result.result == .success {
+                    recievedProfileImage = result.image
+                }
+            }
+        }
+        
+        profileInfoQueue.waitUntilAllOperationsAreFinished()
+        profileInfoQueue.addOperation {
+            let profile = ProfileInfo(fullName: recievedFullName, aboutYouself: recievedAboutYouself, profileImage: recievedProfileImage)
+            OperationQueue.main.addOperation {
+                completion(profile)
+            }
+        }
+        
+    }
+    
+    private func save(text str: String, toFileWithName fileName: String, completion: (Result)->()) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         if let data = str.data(using: .utf16) {
             do {
@@ -61,7 +100,7 @@ class OperationManager {
         }
     }
     
-    func save(image: UIImage, toFileWithName fileName: String, completion: (Result)->()) {
+    private func save(image: UIImage, toFileWithName fileName: String, completion: (Result)->()) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         if let data = image.pngData() {
             do {
@@ -74,6 +113,41 @@ class OperationManager {
             completion(.fail)
         }
     }
+    
+    private func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> ()) {
+        var resultData = StringData()
+        let filePath = getDocumentDirectory().appendingPathComponent(fileName)
+        do {
+            let data = try Data(contentsOf: filePath)
+            if let savedString = String(data: data, encoding: .utf16) {
+                resultData.str = savedString
+                completion(resultData)
+            }
+        } catch {
+            print(error.localizedDescription)
+            resultData.result = .fail
+            resultData.errorDescription = "Can't load data from file with name \(fileName)"
+            completion(resultData)
+        }
+    }
+    
+    private func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> ()) {
+        var resultData = ImageData()
+        let filePath = getDocumentDirectory().appendingPathComponent(fileName)
+        do {
+            let data = try Data(contentsOf: filePath)
+            if let savedImage = UIImage(data: data) {
+                resultData.image = savedImage
+                completion(resultData)
+            }
+        } catch {
+            print(error.localizedDescription)
+            resultData.result = .fail
+            resultData.errorDescription = "Can't load data from file with name \(fileName)"
+            completion(resultData)
+        }
+    }
+
     
     private func getDocumentDirectory() -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

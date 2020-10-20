@@ -46,7 +46,7 @@ class GCDManager {
         }
     }
 
-    func save(text str: String, toFileWithName fileName: String, completionHandler completeion: @escaping (Result) -> ()) {
+    private func save(text str: String, toFileWithName fileName: String, completionHandler completeion: @escaping (Result) -> ()) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {
             if let data = str.data(using: .utf16) {
@@ -62,7 +62,7 @@ class GCDManager {
         }
     }
     
-    func save(image img: UIImage, toFileWithName fileName: String, with completeion: @escaping (Result) -> ()) {
+    private func save(image img: UIImage, toFileWithName fileName: String, with completeion: @escaping (Result) -> ()) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {
             if let data = img.pngData() {
@@ -113,7 +113,7 @@ class GCDManager {
         }
     }
     
-    func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> ()) {
+    private func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> ()) {
         var resultData = StringData()
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {
@@ -132,7 +132,7 @@ class GCDManager {
         }
     }
     
-    func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> ()) {
+    private func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> ()) {
         var resultData = ImageData()
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {

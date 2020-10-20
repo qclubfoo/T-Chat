@@ -12,7 +12,8 @@ import AVFoundation
 class ProfileViewController: UIViewController {
     
     lazy var activityIndicator = UIActivityIndicatorView()
-    lazy var manager = GCDManager()
+//    lazy var manager = GCDManager()
+    lazy var manager = OperationManager()
     
     var currentFullName: String = ""
     var currentAboutYouself: String = ""
