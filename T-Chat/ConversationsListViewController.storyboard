@@ -34,27 +34,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCell" rowHeight="135" id="ZMD-WY-Y66" customClass="ConversationCell" customModule="T_Chat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="135"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCell" rowHeight="89" id="ZMD-WY-Y66" customClass="ChannelCell" customModule="T_Chat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZMD-WY-Y66" id="1BY-b3-mqY">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="f1p-aK-Bxj">
-                                            <rect key="frame" x="30" y="21" width="354" height="93"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f1p-aK-Bxj">
+                                            <rect key="frame" x="30" y="13" width="354" height="63"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wY3-hF-ZFl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="56.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="32.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Profile name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqv-ue-3Z9">
-                                                            <rect key="frame" x="0.0" y="18" width="95.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="6" width="95.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="20/12/1989" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itz-5E-l9q">
-                                                            <rect key="frame" x="266.5" y="18" width="87.5" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itz-5E-l9q">
+                                                            <rect key="frame" x="266.5" y="0.0" width="87.5" height="32.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is wonderfull message here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcT-a3-ARg">
-                                                    <rect key="frame" x="0.0" y="72.5" width="354" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="42.5" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -74,16 +74,16 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="f1p-aK-Bxj" firstAttribute="top" secondItem="1BY-b3-mqY" secondAttribute="topMargin" constant="10" id="6kO-A5-rX8"/>
+                                        <constraint firstItem="f1p-aK-Bxj" firstAttribute="top" secondItem="1BY-b3-mqY" secondAttribute="topMargin" constant="2" id="6kO-A5-rX8"/>
                                         <constraint firstItem="f1p-aK-Bxj" firstAttribute="leading" secondItem="1BY-b3-mqY" secondAttribute="leadingMargin" constant="10" id="NRc-0G-8tt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="f1p-aK-Bxj" secondAttribute="trailing" constant="10" id="ZGf-F5-dHd"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="f1p-aK-Bxj" secondAttribute="bottom" constant="10" id="doW-Ds-tHL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="f1p-aK-Bxj" secondAttribute="bottom" constant="2" id="doW-Ds-tHL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateLabel" destination="Itz-5E-l9q" id="b3q-Tp-Q6J"/>
-                                    <outlet property="lastMessageLabel" destination="QcT-a3-ARg" id="005-qw-6hx"/>
-                                    <outlet property="nameLabel" destination="Dqv-ue-3Z9" id="ozW-8s-8Bc"/>
+                                    <outlet property="channelLastActivity" destination="QcT-a3-ARg" id="005-qw-6hx"/>
+                                    <outlet property="channelLastMessageLabel" destination="Itz-5E-l9q" id="b3q-Tp-Q6J"/>
+                                    <outlet property="channelNameLabel" destination="Dqv-ue-3Z9" id="ozW-8s-8Bc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
