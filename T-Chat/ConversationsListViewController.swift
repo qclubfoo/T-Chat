@@ -84,7 +84,7 @@ extension ConversationsListViewController {
         navigationController?.pushViewController(themesVC, animated: true)
     }
     
-    private func getClosure() -> ()->() {
+    private func getClosure() -> () -> Void {
         return { [weak self] in
             UITableViewCell.appearance().backgroundColor = Theme.current.backgroundColor
             UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = Theme.current.textColor
@@ -100,4 +100,3 @@ extension ConversationsListViewController {
         present(profileVC, animated: true)
     }
 }
-

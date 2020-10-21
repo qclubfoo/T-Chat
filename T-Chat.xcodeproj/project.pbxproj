@@ -3,17 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		003BC9EC252DAA99007F982E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BC9EB252DAA99007F982E /* Theme.swift */; };
 		003BC9EE252DCD98007F982E /* ThemesPickerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BC9ED252DCD98007F982E /* ThemesPickerDelegateProtocol.swift */; };
-		003BCA182534573B007F982E /* exampleView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003BCA172534573B007F982E /* exampleView.storyboard */; };
-		003BCA1A2534589E007F982E /* exampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BCA192534589E007F982E /* exampleView.swift */; };
 		00451BE4253CDDE0003925B9 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE3253CDDE0003925B9 /* GCDManager.swift */; };
 		00451BE7253ED8C6003925B9 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE6253ED8C6003925B9 /* OperationManager.swift */; };
 		00451BE9253F0F88003925B9 /* Multithreading managers structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */; };
+		00451BEC25406703003925B9 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00451BEB25406703003925B9 /* .swiftlint.yml */; };
 		004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */; };
 		004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */; };
 		004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED008251E500D0093C1E2 /* ConversationCell.swift */; };
@@ -32,16 +31,16 @@
 		00AA12FE250EA6E500B8B4C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */; };
 		00D5833F2514AFD300243033 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D5833E2514AFD300243033 /* ProfileViewController.storyboard */; };
 		00D583412514AFFC00243033 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D583402514AFFC00243033 /* ProfileViewController.swift */; };
+		74E5B6706CFEDB1C0FC48E52 /* Pods_T_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47B928B61EBDD4718F9125F /* Pods_T_Chat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		003BC9EB252DAA99007F982E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		003BC9ED252DCD98007F982E /* ThemesPickerDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesPickerDelegateProtocol.swift; sourceTree = "<group>"; };
-		003BCA172534573B007F982E /* exampleView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = exampleView.storyboard; sourceTree = "<group>"; };
-		003BCA192534589E007F982E /* exampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exampleView.swift; sourceTree = "<group>"; };
 		00451BE3253CDDE0003925B9 /* GCDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
 		00451BE6253ED8C6003925B9 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multithreading managers structs.swift"; sourceTree = "<group>"; };
+		00451BEB25406703003925B9 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsListViewController.storyboard; sourceTree = "<group>"; };
 		004ED008251E500D0093C1E2 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
@@ -62,6 +61,9 @@
 		00AA12FF250EA6E500B8B4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00D5833E2514AFD300243033 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		00D583402514AFFC00243033 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8A11C2D7D55E703F97D1A2CB /* Pods-T-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T-Chat.debug.xcconfig"; path = "Target Support Files/Pods-T-Chat/Pods-T-Chat.debug.xcconfig"; sourceTree = "<group>"; };
+		C61E697109F5285371DA7C17 /* Pods-T-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T-Chat.release.xcconfig"; path = "Target Support Files/Pods-T-Chat/Pods-T-Chat.release.xcconfig"; sourceTree = "<group>"; };
+		E47B928B61EBDD4718F9125F /* Pods_T_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_T_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74E5B6706CFEDB1C0FC48E52 /* Pods_T_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +94,6 @@
 				004ED020252B20A40093C1E2 /* ThemesViewController.storyboard */,
 				004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */,
 				004ED01425233FF50093C1E2 /* ConversationViewController.storyboard */,
-				003BCA172534573B007F982E /* exampleView.storyboard */,
 				00AA12FC250EA6E500B8B4C8 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -104,7 +106,6 @@
 				004ED024252B6E4D0093C1E2 /* ThemesViewController.swift */,
 				004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */,
 				004ED00E25233A8E0093C1E2 /* ConversationViewController.swift */,
-				003BCA192534589E007F982E /* exampleView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -143,8 +144,11 @@
 		00AA12E5250EA6E200B8B4C8 = {
 			isa = PBXGroup;
 			children = (
+				00451BEB25406703003925B9 /* .swiftlint.yml */,
 				00AA12F0250EA6E200B8B4C8 /* T-Chat */,
 				00AA12EF250EA6E200B8B4C8 /* Products */,
+				27B69932C196212106F9E7B4 /* Pods */,
+				384D7BE6FE2D900CC0903670 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +176,23 @@
 			path = "T-Chat";
 			sourceTree = "<group>";
 		};
+		27B69932C196212106F9E7B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A11C2D7D55E703F97D1A2CB /* Pods-T-Chat.debug.xcconfig */,
+				C61E697109F5285371DA7C17 /* Pods-T-Chat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		384D7BE6FE2D900CC0903670 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E47B928B61EBDD4718F9125F /* Pods_T_Chat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,9 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00AA1302250EA6E500B8B4C8 /* Build configuration list for PBXNativeTarget "T-Chat" */;
 			buildPhases = (
+				5D614FCA42C4483DA28DE9B0 /* [CP] Check Pods Manifest.lock */,
 				00AA12EA250EA6E200B8B4C8 /* Sources */,
 				00AA12EB250EA6E200B8B4C8 /* Frameworks */,
 				00AA12EC250EA6E200B8B4C8 /* Resources */,
+				21185195FDF6ABB714E651A5 /* [CP] Embed Pods Frameworks */,
+				00451BEA2540643C003925B9 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -230,9 +254,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00451BEC25406703003925B9 /* .swiftlint.yml in Resources */,
 				004ED01525233FF50093C1E2 /* ConversationViewController.storyboard in Resources */,
 				004ED021252B20A40093C1E2 /* ThemesViewController.storyboard in Resources */,
-				003BCA182534573B007F982E /* exampleView.storyboard in Resources */,
 				00AA12FE250EA6E500B8B4C8 /* LaunchScreen.storyboard in Resources */,
 				00AA12FB250EA6E500B8B4C8 /* Assets.xcassets in Resources */,
 				00D5833F2514AFD300243033 /* ProfileViewController.storyboard in Resources */,
@@ -241,6 +265,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00451BEA2540643C003925B9 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		21185195FDF6ABB714E651A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-T-Chat/Pods-T-Chat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-T-Chat/Pods-T-Chat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-T-Chat/Pods-T-Chat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D614FCA42C4483DA28DE9B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-T-Chat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00AA12EA250EA6E200B8B4C8 /* Sources */ = {
@@ -257,7 +341,6 @@
 				004ED00D251E71620093C1E2 /* HardcodedConversationsList.swift in Sources */,
 				004ED01125233B2A0093C1E2 /* HardcodedConversationData.swift in Sources */,
 				00D583412514AFFC00243033 /* ProfileViewController.swift in Sources */,
-				003BCA1A2534589E007F982E /* exampleView.swift in Sources */,
 				004ED01325233B6B0093C1E2 /* MessageCellModel.swift in Sources */,
 				00AA12F2250EA6E200B8B4C8 /* AppDelegate.swift in Sources */,
 				00451BE9253F0F88003925B9 /* Multithreading managers structs.swift in Sources */,
@@ -398,6 +481,7 @@
 		};
 		00AA1303250EA6E500B8B4C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A11C2D7D55E703F97D1A2CB /* Pods-T-Chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -417,6 +501,7 @@
 		};
 		00AA1304250EA6E500B8B4C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C61E697109F5285371DA7C17 /* Pods-T-Chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

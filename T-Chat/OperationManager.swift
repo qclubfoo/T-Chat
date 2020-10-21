@@ -10,7 +10,7 @@ import UIKit
 
 class OperationManager {
     
-    func saveProfileInfo(fullName: String?, aboutYouself: String?, profileImage: UIImage?, completionHandler completion: @escaping (String)->()) {
+    func saveProfileInfo(fullName: String?, aboutYouself: String?, profileImage: UIImage?, completionHandler completion: @escaping (String) -> Void) {
         let queue = OperationQueue()
         var errors: String = ""
         
@@ -46,7 +46,7 @@ class OperationManager {
         completion(errors)
     }
     
-    func getProfileInfo(completionHandler completion: @escaping (ProfileInfo) -> ()) {
+    func getProfileInfo(completionHandler completion: @escaping (ProfileInfo) -> Void) {
         var recievedFullName: String = ""
         var recievedAboutYouself: String = ""
         var recievedProfileImage: UIImage?
@@ -85,7 +85,7 @@ class OperationManager {
         
     }
     
-    private func save(text str: String, toFileWithName fileName: String, completion: (Result)->()) {
+    private func save(text str: String, toFileWithName fileName: String, completion: (Result) -> Void) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         if let data = str.data(using: .utf16) {
             do {
@@ -100,7 +100,7 @@ class OperationManager {
         }
     }
     
-    private func save(image: UIImage, toFileWithName fileName: String, completion: (Result)->()) {
+    private func save(image: UIImage, toFileWithName fileName: String, completion: (Result) -> Void) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         if let data = image.pngData() {
             do {
@@ -114,7 +114,7 @@ class OperationManager {
         }
     }
     
-    private func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> ()) {
+    private func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> Void) {
         var resultData = StringData()
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         do {
@@ -131,7 +131,7 @@ class OperationManager {
         }
     }
     
-    private func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> ()) {
+    private func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> Void) {
         var resultData = ImageData()
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         do {
@@ -148,7 +148,6 @@ class OperationManager {
         }
     }
 
-    
     private func getDocumentDirectory() -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }

@@ -58,12 +58,10 @@ extension ConversationCell: ConfigurableView {
             dateLabel.isHidden = false
         }
         if model.isOnline {
-            self.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 93/255, alpha: 1)
+            self.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 93 / 255, alpha: 1)
             self.lastMessageLabel.textColor = .black
             self.dateLabel.textColor = .black
             self.nameLabel.textColor = .black
         }
     }
 }
-
-

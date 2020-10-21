@@ -73,7 +73,7 @@ func getHardcodedOnlineConversationList() -> [ConversationCellModel] {
             message: "Homework checked",
             date: Date(timeIntervalSinceNow: -5),
             isOnline: true,
-            hasUnreadedMessages: true),
+            hasUnreadedMessages: true)
     ]
 }
 
@@ -142,7 +142,6 @@ func getHardcodedOfflineConversationList() -> [ConversationCellModel] {
             message: "Зимой планирую прилететь в Москву, на НГ.",
             date: Date(timeIntervalSinceNow: -5),
             isOnline: false,
-            hasUnreadedMessages: true),
+            hasUnreadedMessages: true)
     ]
 }
-

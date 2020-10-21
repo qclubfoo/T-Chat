@@ -10,7 +10,7 @@ import UIKit
 
 class GCDManager {
     
-    func saveProfileInfo(fullName: String?, aboutYouself: String?, profileImage: UIImage?, completionHandler completion: @escaping (String)->()) {
+    func saveProfileInfo(fullName: String?, aboutYouself: String?, profileImage: UIImage?, completionHandler completion: @escaping (String) -> Void) {
         var errors = ""
         let savingGroup = DispatchGroup()
         
@@ -46,7 +46,7 @@ class GCDManager {
         }
     }
 
-    private func save(text str: String, toFileWithName fileName: String, completionHandler completeion: @escaping (Result) -> ()) {
+    private func save(text str: String, toFileWithName fileName: String, completionHandler completeion: @escaping (Result) -> Void) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {
             if let data = str.data(using: .utf16) {
@@ -62,7 +62,7 @@ class GCDManager {
         }
     }
     
-    private func save(image img: UIImage, toFileWithName fileName: String, with completeion: @escaping (Result) -> ()) {
+    private func save(image img: UIImage, toFileWithName fileName: String, with completeion: @escaping (Result) -> Void) {
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {
             if let data = img.pngData() {
@@ -78,7 +78,7 @@ class GCDManager {
         }
     }
     
-    func getProfileInfo(completionHandler completion: @escaping (ProfileInfo) -> ()) {
+    func getProfileInfo(completionHandler completion: @escaping (ProfileInfo) -> Void) {
         var recievedFullName: String = ""
         var recievedAboutYouself: String = ""
         var recievedProfileImage: UIImage?
@@ -113,7 +113,7 @@ class GCDManager {
         }
     }
     
-    private func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> ()) {
+    private func getString(fromFileWithName fileName: String, completionHandler completion: @escaping (StringData) -> Void) {
         var resultData = StringData()
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {
@@ -132,7 +132,7 @@ class GCDManager {
         }
     }
     
-    private func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> ()) {
+    private func getImage(fromFileWithName fileName: String, completionHandler completion: @escaping (ImageData) -> Void) {
         var resultData = ImageData()
         let filePath = getDocumentDirectory().appendingPathComponent(fileName)
         DispatchQueue.global(qos: .default).async {

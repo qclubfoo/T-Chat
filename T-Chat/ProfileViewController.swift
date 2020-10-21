@@ -11,13 +11,12 @@ import AVFoundation
 
 class ProfileViewController: UIViewController {
     
-    lazy var activityIndicator = UIActivityIndicatorView()
-//    lazy var manager = GCDManager()
-    lazy var manager = OperationManager()
+    lazy var manager = GCDManager()
+//    lazy var manager = OperationManager()
     
     var currentFullName: String = ""
     var currentAboutYouself: String = ""
-    var currentProfileImage: UIImage? = nil
+    var currentProfileImage: UIImage?
 
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var gcdSaveButton: UIButton!
@@ -28,8 +27,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameAndSurnameTextField: UITextField!
     @IBOutlet weak var aboutYouselfTextView: UITextView!
-
     
+    lazy var activityIndicator = UIActivityIndicatorView()
+
     @IBAction func editProfileButtonTapped(_ sender: UIButton) {
         if sender.titleLabel?.text == "Edit" {
             currentFullName = nameAndSurnameTextField.text ?? ""
@@ -119,8 +119,8 @@ class ProfileViewController: UIViewController {
         editProfileOff()
         activityIndicator.startAnimating()
         
-        let dataFromOutlets = checkDataFromOutlets()
-        if !changesWasMade(profileData: dataFromOutlets) {
+        let outletsData = checkDataFromOutlets()
+        if !changesWasMade(profileData: outletsData) {
             let ac = UIAlertController(title: "Nothing was changed", message: nil, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .default))
             present(ac, animated: true)
@@ -129,7 +129,7 @@ class ProfileViewController: UIViewController {
         
         let manager = GCDManager()
         
-        func completionHandler(errors: String) -> Void {
+        func completion(errors: String) {
             let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .default))
             if errors.isEmpty {
@@ -138,21 +138,21 @@ class ProfileViewController: UIViewController {
                 ac.title = "Error"
                 ac.message = errors
                 ac.addAction(UIAlertAction(title: "Retry", style: .default) { _ in
-                    manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:))
+                    manager.saveProfileInfo(fullName: outletsData.name, aboutYouself: outletsData.about, profileImage: outletsData.image, completionHandler: completion(errors:))
                 })
             }
             present(ac, animated: true)
             activityIndicator.stopAnimating()
         }
         
-        manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:))
+        manager.saveProfileInfo(fullName: outletsData.name, aboutYouself: outletsData.about, profileImage: outletsData.image, completionHandler: completion(errors:))
     }
     
     @objc func operationButtonTapped() {
         editProfileOff()
         
-        let dataFromOutlets = checkDataFromOutlets()
-        if !changesWasMade(profileData: dataFromOutlets) {
+        let outletsData = checkDataFromOutlets()
+        if !changesWasMade(profileData: outletsData) {
             let ac = UIAlertController(title: "Nothing was changed", message: nil, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .default))
             present(ac, animated: true)
@@ -160,7 +160,7 @@ class ProfileViewController: UIViewController {
         }
         
         let manager = OperationManager()
-        func completionHandler(errors: String) -> Void {
+        func completion(errors: String) {
             let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Ok", style: .default))
             if errors.isEmpty {
@@ -169,14 +169,14 @@ class ProfileViewController: UIViewController {
                 ac.title = "Error"
                 ac.message = errors
                 ac.addAction(UIAlertAction(title: "Retry", style: .default) { _ in
-                    manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:))
+                    manager.saveProfileInfo(fullName: outletsData.name, aboutYouself: outletsData.about, profileImage: outletsData.image, completionHandler: completion(errors:))
                 })
             }
             present(ac, animated: true)
             activityIndicator.stopAnimating()
         }
         
-        manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:)) 
+        manager.saveProfileInfo(fullName: outletsData.name, aboutYouself: outletsData.about, profileImage: outletsData.image, completionHandler: completion(errors:))
     }
     
     private func editProfileOn() {
@@ -209,7 +209,7 @@ extension ProfileViewController {
         return true
     }
     
-    private func checkDataFromOutlets() -> (fullName: String?, aboutYouself: String?, profileImage: UIImage?) {
+    private func checkDataFromOutlets() -> (name: String?, about: String?, image: UIImage?) {
         
         var fullName: String?
         var aboutYouself: String?
@@ -258,7 +258,7 @@ extension ProfileViewController {
       self.view.frame.origin.y = 0
     }
     
-    //    Метод для инициализации viewController с помощью имени сториборда. Имена контроллера и сториборда одинаковые для того, чтобы не использовать storyboardID для инициализации.
+    //Метод для инициализации viewController с помощью имени сториборда. Имена контроллера и сториборда одинаковые для того, чтобы не использовать storyboardID для инициализации.
     static func storyboardInstance() -> ProfileViewController? {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         return storyboard.instantiateInitialViewController() as? ProfileViewController
@@ -310,7 +310,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
         self.dismiss(animated: true) { [weak self] in
             
@@ -340,6 +340,4 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
         present(ac, animated: true)
     }
-
-    
 }

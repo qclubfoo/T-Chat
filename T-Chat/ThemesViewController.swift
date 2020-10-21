@@ -17,11 +17,8 @@ class ThemesViewController: UIViewController {
     @IBOutlet var dayGestureOutlet: UITapGestureRecognizer!
     @IBOutlet var nightGestureOutlet: UITapGestureRecognizer!
     
-    
-//    Если использовать delegate без weak или в closure использовать self вместь weak self, то может возникнуть retain cycle
     weak var delegate: ThemesPickerDelegate?
-    var closure: (() -> ())?
-    
+    var closure: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()

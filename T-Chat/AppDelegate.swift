@@ -22,20 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        print(Theme.current.mainColor)
         Theme.current.setCurrent()
         return true
     }
     
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         
         logMessage(message: "Application moved from <Not running> to <Incactive>: <\(#function)>")
         return true
     }
-    
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         logMessage(message: "Application moved from <Background> to <Inactive>: <\(#function)>")
@@ -56,10 +53,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         logMessage(message: "Application moved from <Background> to <Suspended> or <Not running>: <\(#function)>")
     }
-    
-    
-
-
-
 }
-
