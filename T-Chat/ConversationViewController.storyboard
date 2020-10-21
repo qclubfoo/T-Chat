@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="124" id="nbp-cl-fS2" customClass="MessageCell" customModule="T_Chat" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncomingMessageCell" rowHeight="124" id="nbp-cl-fS2" customClass="IncomingMessageCell" customModule="T_Chat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="124"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nbp-cl-fS2" id="1Gn-99-WR7">
@@ -47,6 +47,39 @@
                                 <connections>
                                     <outlet property="containerView" destination="JbE-5T-rt1" id="4pp-FQ-rGa"/>
                                     <outlet property="messageLabel" destination="Lpc-mn-JIZ" id="Y8U-rd-Zxt"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutgoingMessageCell" rowHeight="124" id="lIK-SR-d5s" customClass="OutgoingMessageCell" customModule="T_Chat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="152" width="414" height="124"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lIK-SR-d5s" id="kcf-ta-Om3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="vyU-aF-Yxh" userLabel="ContainerView">
+                                            <rect key="frame" x="0.0" y="5" width="414" height="114"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybS-iQ-FTT">
+                                                    <rect key="frame" x="8" y="8" width="398" height="98"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstItem="ybS-iQ-FTT" firstAttribute="top" secondItem="vyU-aF-Yxh" secondAttribute="top" constant="8" id="AcR-SV-JzG"/>
+                                                <constraint firstAttribute="bottom" secondItem="ybS-iQ-FTT" secondAttribute="bottom" constant="8" id="TqK-Un-4SK"/>
+                                                <constraint firstItem="ybS-iQ-FTT" firstAttribute="leading" secondItem="vyU-aF-Yxh" secondAttribute="leading" constant="8" id="h7c-yK-8IQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="ybS-iQ-FTT" secondAttribute="trailing" constant="8" id="qgP-48-Tx9"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="containerView" destination="vyU-aF-Yxh" id="XHb-eN-fcz"/>
+                                    <outlet property="messageLabel" destination="ybS-iQ-FTT" id="zaZ-23-d0B"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
