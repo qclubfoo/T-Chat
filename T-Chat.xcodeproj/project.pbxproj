@@ -13,6 +13,7 @@
 		00451BE7253ED8C6003925B9 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE6253ED8C6003925B9 /* OperationManager.swift */; };
 		00451BE9253F0F88003925B9 /* Multithreading managers structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */; };
 		00451BEC25406703003925B9 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 00451BEB25406703003925B9 /* .swiftlint.yml */; };
+		00451BF22540899B003925B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00451BF12540899B003925B9 /* GoogleService-Info.plist */; };
 		004ED005251E482C0093C1E2 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */; };
 		004ED007251E486F0093C1E2 /* ConversationsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */; };
 		004ED009251E500D0093C1E2 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004ED008251E500D0093C1E2 /* ConversationCell.swift */; };
@@ -41,6 +42,7 @@
 		00451BE6253ED8C6003925B9 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		00451BE8253F0F88003925B9 /* Multithreading managers structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multithreading managers structs.swift"; sourceTree = "<group>"; };
 		00451BEB25406703003925B9 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		00451BF12540899B003925B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		004ED004251E482C0093C1E2 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		004ED006251E486F0093C1E2 /* ConversationsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationsListViewController.storyboard; sourceTree = "<group>"; };
 		004ED008251E500D0093C1E2 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				004ED0182523C9100093C1E2 /* Storyboards */,
 				00AA12FA250EA6E500B8B4C8 /* Assets.xcassets */,
 				00AA12FF250EA6E500B8B4C8 /* Info.plist */,
+				00451BF12540899B003925B9 /* GoogleService-Info.plist */,
 			);
 			path = "T-Chat";
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00451BEC25406703003925B9 /* .swiftlint.yml in Resources */,
+				00451BF22540899B003925B9 /* GoogleService-Info.plist in Resources */,
 				004ED01525233FF50093C1E2 /* ConversationViewController.storyboard in Resources */,
 				004ED021252B20A40093C1E2 /* ThemesViewController.storyboard in Resources */,
 				00AA12FE250EA6E500B8B4C8 /* LaunchScreen.storyboard in Resources */,

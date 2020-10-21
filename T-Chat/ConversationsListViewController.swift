@@ -15,7 +15,7 @@ class ConversationsListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         applyCurrentTheme()
         
         title = "Tinkoff Chat"
