@@ -14,10 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var coreDataStack = CoreDataStack()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
         Theme.current.setCurrent()
+        
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDataBaseStatistice()
+        }
+        
+        coreDataStack.enableObservers()
+        
         return true
     }
     
