@@ -23,7 +23,6 @@ extension Channel_db {
         let identifier = self.identifier ?? "Without ID"
         let lastMessage = self.lastMessage ?? "No messages yet"
         let lastActivity: String
-        let numberOfMessages: String
         if let date = self.lastActivity {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
@@ -31,16 +30,17 @@ extension Channel_db {
         } else {
             lastActivity = "No activiteis yet"
         }
-        if let messagesCount = self.messages?.count {
-            numberOfMessages = String(messagesCount)
-        }
-        return "Channel name: \(name)\nChannel ID: \(identifier)\nChannel contains: \(numberOfMessages) messages\nChannel last message: \(lastMessage)\nChannel last activity: \(lastActivity)\n"
+        return """
+        Channel name: \(name)
+        ID: \(identifier)
+        Last message: \(lastMessage)
+        Last activity: \(lastActivity)\n
+"""
     }
 }
 
 extension Message_db {
-    convenience init(content: String, created: Date, senderID: String, senderName: String, context: NSManagedObjectContext) {
-        // нужно ли добавить id для сообщения
+    convenience init(content: String, created: Date, senderID: String, senderName: String, channelID: String, context: NSManagedObjectContext) {
         self.init(context: context)
         self.content = content
         self.created = created
@@ -48,4 +48,3 @@ extension Message_db {
         self.senderName = senderName
     }
 }
-

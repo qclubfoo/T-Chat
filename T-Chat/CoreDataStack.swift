@@ -13,6 +13,7 @@ class CoreDataStack {
     
     var didUpdateDataBase: ((CoreDataStack) -> Void)?
     
+    var isPrinted: Bool = false
     private var storeURL: URL = {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("Can't access to document directory")
@@ -130,7 +131,13 @@ class CoreDataStack {
     func printDataBaseStatistice() {
         mainContext.perform {
             guard let channelsFetchResult = try? self.mainContext.fetch(Channel_db.fetchRequest()) as? [Channel_db] else { return }
-            channelsFetchResult.forEach { print($0.about) }
+            print("\nThere are \(channelsFetchResult.count) channels saved in store")
+            
+// Uncomment for getting info about each saved channel
+//            channelsFetchResult.forEach { print($0.about) }
+            
+            guard let messagesFetchResult = try? self.mainContext.fetch(Message_db.fetchRequest()) as? [Message_db] else { return }
+            print("There are \(messagesFetchResult.count) messages saved in store\n")
         }
     }
 }

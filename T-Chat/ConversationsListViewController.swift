@@ -20,6 +20,7 @@ class ConversationsListViewController: UITableViewController {
     }
     lazy var db = Firestore.firestore()
     lazy var reference = db.collection("channels")
+    lazy var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,17 @@ class ConversationsListViewController: UITableViewController {
                                                 lastActivity: lastActivity))
                     }
                     self?.channelsList = channels
+                    if let coreDataStack = self?.appDelegate?.coreDataStack {
+                        coreDataStack.performSave { context in
+                            channels.forEach {
+                                _ = Channel_db(identifier: $0.identifier,
+                                                            name: $0.name,
+                                                            lastMessage: $0.lastMessage,
+                                                            lastActivity: $0.lastActivity,
+                                                            context: context)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -99,6 +111,7 @@ class ConversationsListViewController: UITableViewController {
         guard let conversationVC = ConversationViewController.storyboardInstance() else { return }
         let pickedChannel = channelsList[indexPath.row]
         conversationVC.reference = db.collection("channels/\(pickedChannel.identifier)/messages")
+        conversationVC.channelIdentifier = pickedChannel.identifier
         conversationVC.title = pickedChannel.name
         navigationController?.pushViewController(conversationVC, animated: true)
     }
