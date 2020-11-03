@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qOE-h6-ogQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Example View-->
+        <scene sceneID="4Mt-2L-3e0">
+            <objects>
+                <viewController id="qOE-h6-ogQ" customClass="exampleView" customModule="T_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rUB-ZW-DTY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jyP-GE-cML">
+                                <rect key="frame" x="20" y="431" width="374" height="34"/>
+                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVe-zX-oiU">
+                                <rect key="frame" x="20" y="495" width="374" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.75633496050000004" blue="0.38538342710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-bQ-nEe">
+                                <rect key="frame" x="132" y="359" width="150" height="42"/>
+                                <color key="backgroundColor" red="0.0" green="0.46189910169999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Mw6-ge-zFI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="1" green="1" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jyP-GE-cML" firstAttribute="centerY" secondItem="rUB-ZW-DTY" secondAttribute="centerY" id="1IN-Eu-dvq"/>
+                            <constraint firstItem="OVe-zX-oiU" firstAttribute="top" secondItem="jyP-GE-cML" secondAttribute="bottom" constant="30" id="Ar6-Yw-wAJ"/>
+                            <constraint firstItem="Xhm-bQ-nEe" firstAttribute="centerX" secondItem="OVe-zX-oiU" secondAttribute="centerX" id="DHT-vv-wA6"/>
+                            <constraint firstItem="jyP-GE-cML" firstAttribute="top" secondItem="Xhm-bQ-nEe" secondAttribute="bottom" constant="30" id="EEV-qh-5kq"/>
+                            <constraint firstItem="OVe-zX-oiU" firstAttribute="width" secondItem="jyP-GE-cML" secondAttribute="width" id="P4K-A9-T0p"/>
+                            <constraint firstItem="OVe-zX-oiU" firstAttribute="centerX" secondItem="jyP-GE-cML" secondAttribute="centerX" id="PDG-jH-W0z"/>
+                            <constraint firstItem="3fl-Pe-RYY" firstAttribute="trailing" secondItem="jyP-GE-cML" secondAttribute="trailing" constant="20" id="ZeW-P9-v4b"/>
+                            <constraint firstItem="jyP-GE-cML" firstAttribute="leading" secondItem="3fl-Pe-RYY" secondAttribute="leading" constant="20" id="aPn-GF-Zdw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3fl-Pe-RYY"/>
+                    </view>
+                    <connections>
+                        <outlet property="editSaveButton" destination="Xhm-bQ-nEe" id="LOG-Am-X2n"/>
+                        <outlet property="textFieldOne" destination="jyP-GE-cML" id="74O-X1-xOl"/>
+                        <outlet property="textFieldTwo" destination="OVe-zX-oiU" id="lja-yB-1xB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fM9-MO-bGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="149"/>
+        </scene>
+    </scenes>
+</document>

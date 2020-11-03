@@ -10,30 +10,82 @@ import UIKit
 import AVFoundation
 
 class ProfileViewController: UIViewController {
+    
+    lazy var activityIndicator = UIActivityIndicatorView()
+//    lazy var manager = GCDManager()
+    lazy var manager = OperationManager()
+    
+    var currentFullName: String = ""
+    var currentAboutYouself: String = ""
+    var currentProfileImage: UIImage? = nil
 
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var gcdSaveButton: UIButton!
+    @IBOutlet weak var operationalSaveButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameLabelContainerView: UIView!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var avatarEditButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nameAndSurnameLabel: UILabel!
-    @IBOutlet weak var youselfDescriptionLabel: UILabel!
+    @IBOutlet weak var nameAndSurnameTextField: UITextField!
+    @IBOutlet weak var aboutYouselfTextView: UITextView!
 
-    @IBAction func closeButtonTapped(_ sender: Any) {
-        dismiss(animated: true)
-    }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    @IBAction func editProfileButtonTapped(_ sender: UIButton) {
+        if sender.titleLabel?.text == "Edit" {
+            currentFullName = nameAndSurnameTextField.text ?? ""
+            currentAboutYouself = aboutYouselfTextView.text
+            currentProfileImage = profileImageView.image
+            sender.setTitle("Cancel", for: .normal)
+            editProfileOn()
+        } else {
+            sender.setTitle("Edit", for: .normal)
+            editProfileOff()
+            nameAndSurnameTextField.text = currentFullName
+            aboutYouselfTextView.text = currentAboutYouself
+            profileImageView.image = currentProfileImage
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.startAnimating()
+        manager.getProfileInfo { [weak self] profile in
+            if !profile.fullName.isEmpty {
+                self?.nameAndSurnameTextField.text = profile.fullName
+            }
+            if !profile.aboutYouself.isEmpty {
+                self?.aboutYouselfTextView.text = profile.aboutYouself
+            }
+            if let image = profile.profileImage {
+                self?.profileImageView.image = image
+                self?.nameLabel.isHidden = true
+                self?.profileImageView.isHidden = false
+            }
+            self?.activityIndicator.stopAnimating()
+        }
+        
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        nameAndSurnameTextField.delegate = self
+        aboutYouselfTextView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        saveButton.backgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
         profileImageView.isHidden = true
-        editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        avatarEditButton.addTarget(self, action: #selector(avatarEditButtonTapped), for: .touchUpInside)
         nameLabel.text = getNameLabelLetters()
+        aboutYouselfTextView.layer.cornerRadius = 5
+        nameAndSurnameTextField.layer.cornerRadius = 5
+        gcdSaveButton.addTarget(self, action: #selector(gcdButtonTapped), for: .touchUpInside)
+        operationalSaveButton.addTarget(self, action: #selector(operationButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -41,13 +93,12 @@ class ProfileViewController: UIViewController {
         
         nameLabelContainerView.layer.cornerRadius = nameLabelContainerView.bounds.height / 2
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
-        saveButton.layer.cornerRadius = saveButton.bounds.height / 4
+        gcdSaveButton.layer.cornerRadius = gcdSaveButton.bounds.height / 4
+        operationalSaveButton.layer.cornerRadius = gcdSaveButton.bounds.height / 4
     }
     
-    // Метод для обработки нажатия на кнопку edit. @objc нужен т.к. вызываемый метод в addTarget вызывается через #selector
-    @objc func editButtonTapped() {
-        // Инициализация actionSheet
-        let ac = UIAlertController(title: "Edit profile", message: nil, preferredStyle: .actionSheet)
+    @objc func avatarEditButtonTapped() {
+        let ac = UIAlertController(title: "Edit profile photo", message: nil, preferredStyle: .actionSheet)
         
         // action для выбора фотографии из галереи
         ac.addAction(UIAlertAction(title: "Choose profile photo from galery", style: .default) { [weak self] _ in
@@ -59,44 +110,163 @@ class ProfileViewController: UIViewController {
             self?.getImage(fromSourceType: .camera)
         })
         
-        // action для изменения имени и фамилии с помощью другого alert с textField
-        ac.addAction(UIAlertAction(title: "Edit name and/or surname", style: .default) { [weak self] _ in
-            let ac = UIAlertController(title: "New name and/or surname", message: nil, preferredStyle: .alert)
-            ac.addTextField(configurationHandler: { textField in
-                textField.placeholder = "name (space) surname"
-                
-            })
-            ac.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
-                guard let str = ac.textFields?.first?.text else { return }
-                self?.nameAndSurnameLabel.text = str
-                self?.nameLabel.text = self?.getNameLabelLetters()
-            })
-            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self?.present(ac, animated: true)
-        })
-        
-        // action для изменения данных о себе с помощью другого alert с textField
-        ac.addAction(UIAlertAction(title: "Edit self description", style: .default) { [weak self] _ in
-            let ac = UIAlertController(title: "Youself description", message: nil, preferredStyle: .alert)
-            ac.addTextField(configurationHandler: { textField in
-                textField.placeholder = "Describe youself here"
-            })
-            ac.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
-                guard let str = ac.textFields?.first?.text else { return }
-                self?.youselfDescriptionLabel.text = str
-            })
-            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self?.present(ac, animated: true)
-        })
-        
         // action для выхода без действий из actionSheet
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
     
-//    Метод для получения инициалов из имени и фамилии
+    @objc func gcdButtonTapped() {
+        editProfileOff()
+        activityIndicator.startAnimating()
+        
+        let dataFromOutlets = checkDataFromOutlets()
+        if !changesWasMade(profileData: dataFromOutlets) {
+            let ac = UIAlertController(title: "Nothing was changed", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
+            return
+        }
+        
+        let manager = GCDManager()
+        
+        func completionHandler(errors: String) -> Void {
+            let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            if errors.isEmpty {
+                ac.title = "All data was saved correctly"
+            } else {
+                ac.title = "Error"
+                ac.message = errors
+                ac.addAction(UIAlertAction(title: "Retry", style: .default) { _ in
+                    manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:))
+                })
+            }
+            present(ac, animated: true)
+            activityIndicator.stopAnimating()
+        }
+        
+        manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:))
+    }
+    
+    @objc func operationButtonTapped() {
+        editProfileOff()
+        
+        let dataFromOutlets = checkDataFromOutlets()
+        if !changesWasMade(profileData: dataFromOutlets) {
+            let ac = UIAlertController(title: "Nothing was changed", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(ac, animated: true)
+            return
+        }
+        
+        let manager = OperationManager()
+        func completionHandler(errors: String) -> Void {
+            let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default))
+            if errors.isEmpty {
+                ac.title = "All data was saved correctly"
+            } else {
+                ac.title = "Error"
+                ac.message = errors
+                ac.addAction(UIAlertAction(title: "Retry", style: .default) { _ in
+                    manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:))
+                })
+            }
+            present(ac, animated: true)
+            activityIndicator.stopAnimating()
+        }
+        
+        manager.saveProfileInfo(fullName: dataFromOutlets.fullName, aboutYouself: dataFromOutlets.aboutYouself, profileImage: dataFromOutlets.profileImage, completionHandler: completionHandler(errors:)) 
+    }
+    
+    private func editProfileOn() {
+        nameAndSurnameTextField.isUserInteractionEnabled = true
+        nameAndSurnameTextField.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        aboutYouselfTextView.isEditable = true
+        aboutYouselfTextView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        buttons(enable: [gcdSaveButton, operationalSaveButton, avatarEditButton])
+    }
+    
+    private func editProfileOff() {
+        nameAndSurnameTextField.isUserInteractionEnabled = false
+        nameAndSurnameTextField.backgroundColor = .white
+        aboutYouselfTextView.isEditable = false
+        aboutYouselfTextView.backgroundColor = .white
+        buttons(disable: [gcdSaveButton, operationalSaveButton, avatarEditButton])
+        editButton.setTitle("Edit", for: .normal)
+        resignFirstResponder()
+    }
+    
+}
+
+// GCD and OperationQueue managers helping functions
+extension ProfileViewController {
+    
+    private func changesWasMade(profileData: (String?, String?, UIImage?)) -> Bool {
+        if profileData.0 == nil && profileData.1 == nil && profileData.2 == nil {
+            return false
+        }
+        return true
+    }
+    
+    private func checkDataFromOutlets() -> (fullName: String?, aboutYouself: String?, profileImage: UIImage?) {
+        
+        var fullName: String?
+        var aboutYouself: String?
+        var profileImage: UIImage?
+        
+        if let name = nameAndSurnameTextField.text {
+            if name != currentFullName {
+                fullName = name
+            }
+        }
+        if let about = aboutYouselfTextView.text {
+            if about != currentAboutYouself {
+                aboutYouself = about
+            }
+        }
+        if profileImageView.image != currentProfileImage {
+            profileImage = profileImageView.image
+            currentProfileImage = profileImageView.image
+        }
+        
+        return (fullName, aboutYouself, profileImage)
+    }
+}
+
+// helping functions
+extension ProfileViewController {
+    
+    private func buttons(enable buttons: [UIButton]) {
+        for button in buttons {
+            button.isEnabled = true
+        }
+    }
+    
+    private func buttons(disable buttons: [UIButton]) {
+        for button in buttons {
+            button.isEnabled = false
+        }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+      self.view.frame.origin.y = 0 - keyboardSize.height
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+      self.view.frame.origin.y = 0
+    }
+    
+    //    Метод для инициализации viewController с помощью имени сториборда. Имена контроллера и сториборда одинаковые для того, чтобы не использовать storyboardID для инициализации.
+    static func storyboardInstance() -> ProfileViewController? {
+        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
+        return storyboard.instantiateInitialViewController() as? ProfileViewController
+    }
+    
+    //    Метод для получения инициалов из имени и фамилии
     private func getNameLabelLetters() -> String {
-        guard let strs = nameAndSurnameLabel.text?.components(separatedBy: " ") else { return "" }
+        guard let strs = nameAndSurnameTextField.text?.components(separatedBy: " ") else { return "" }
         var finalStr: String = ""
         for word in strs {
             if let char = word.first {
@@ -107,11 +277,23 @@ class ProfileViewController: UIViewController {
             }
         }
         return finalStr.uppercased()
+    
     }
-//    Метод для инициализации viewController с помощью имени сториборда. Имена контроллера и сториборда одинаковые для того, чтобы не использовать storyboardID для инициализации.
-    static func storyboardInstance() -> ProfileViewController? {
-        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
-        return storyboard.instantiateInitialViewController() as? ProfileViewController
+}
+
+extension ProfileViewController: UITextFieldDelegate, UITextViewDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        aboutYouselfTextView.becomeFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 
@@ -119,7 +301,6 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
         checkCameraAccess()
-        //Check is source type available
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
