@@ -8,38 +8,44 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ConversationsListViewController: UITableViewController {
     
-    var channelsList = [Channel]() {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }
-    }
+    var frc: NSFetchedResultsController<Channel_db> = {
+        let mainContext = AppDelegate.coreDataStack.mainContext
+        let channelsFetchRequest = Channel_db.createFetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        channelsFetchRequest.sortDescriptors = [sortDescriptor]
+        channelsFetchRequest.fetchBatchSize = 25
+        let frc = NSFetchedResultsController(fetchRequest: channelsFetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        return frc
+    }()
     lazy var db = Firestore.firestore()
     lazy var reference = db.collection("channels")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        frc.delegate = self
+        loadSavedData()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.reference.addSnapshotListener { [weak self] snapshot, _ in
-                if let documents = snapshot?.documents {
-                    var channels = [Channel]()
-                    for document in documents {
-                        let documentData = document.data()
-                        guard let name = document.data()["name"] as? String else { continue }
-                        let id = document.documentID
-                        let lastMessage = documentData["lastMessage"] as? String
-                        let lastActivityTimeStamp = documentData["lastActivity"] as? Timestamp
-                        let lastActivity = lastActivityTimeStamp?.dateValue()
-                        channels.append(Channel(identifier: id,
-                                                name: name,
-                                                lastMessage: lastMessage,
-                                                lastActivity: lastActivity))
+            self?.reference.addSnapshotListener { snapshot, _ in
+                if let changes = snapshot?.documentChanges {
+                    AppDelegate.coreDataStack.performSave { context in
+                        for change in changes {
+                            let documentData = change.document.data()
+                            let name = documentData["name"] as? String ?? ""
+                            let id = change.document.documentID
+                            let lastMessage = documentData["lastMessage"] as? String
+                            let lastActivityTimeStamp = documentData["lastActivity"] as? Timestamp
+                            let lastActivity = lastActivityTimeStamp?.dateValue()
+                            _ = Channel_db(identifier: id,
+                                           name: name,
+                                           lastMessage: lastMessage,
+                                           lastActivity: lastActivity,
+                                           context: context)
+                        }
                     }
-                    self?.channelsList = channels
                 }
             }
         }
@@ -81,27 +87,86 @@ class ConversationsListViewController: UITableViewController {
         reference.addDocument(data: ["name": name])
     }
     
+    private func loadSavedData() {
+        do {
+            try frc.performFetch()
+            tableView.reloadData()
+        } catch {
+            print("Can't fetch data")
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         "Channels"
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return frc.sections?.count ?? 0
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channelsList.count
+        let sectionInfo = frc.sections?[section]
+        return sectionInfo?.numberOfObjects ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell", for: indexPath) as? ChannelCell else { return UITableViewCell() }
-        cell.configure(with: channelsList[indexPath.row])
+        let cellData = frc.object(at: indexPath)
+        cell.configure(with: cellData)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conversationVC = ConversationViewController.storyboardInstance() else { return }
-        let pickedChannel = channelsList[indexPath.row]
+        let pickedChannel = frc.object(at: indexPath)
         conversationVC.reference = db.collection("channels/\(pickedChannel.identifier)/messages")
+        conversationVC.channelIdentifier = pickedChannel.identifier
         conversationVC.title = pickedChannel.name
         navigationController?.pushViewController(conversationVC, animated: true)
     }
+    
+}
+
+extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                guard let cell = tableView.cellForRow(at: indexPath) as? ChannelCell else { break }
+                let channel = frc.object(at: indexPath)
+                cell.configure(with: channel)
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .delete:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    
     
 }
 
@@ -117,8 +182,6 @@ extension ConversationsListViewController: ThemesPickerDelegate {
 extension ConversationsListViewController {
     @objc func showThemeVC() {
         guard let themesVC = ThemesViewController.storyboardInstance() else { return }
-        //        themesVC.delegate = self
-        // use line above the comment for using delegate instead of closure. Make sure you comment line under.
         themesVC.closure = getClosure()
         navigationController?.pushViewController(themesVC, animated: true)
     }

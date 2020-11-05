@@ -11,31 +11,31 @@ import UIKit
 class ChannelCell: UITableViewCell {
     @IBOutlet weak var channelNameLabel: UILabel!
     
-    @IBOutlet weak var channelLastMessageLabel: UILabel!
+    @IBOutlet weak var channelLastActivityLabel: UILabel!
     
-    @IBOutlet weak var channelLastActivity: UILabel!
+    @IBOutlet weak var channelLastMessageLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
 
         backgroundColor = Theme.current.backgroundColor
-        channelLastActivity.textColor = Theme.current.textColor
         channelLastMessageLabel.textColor = Theme.current.textColor
+        channelLastActivityLabel.textColor = Theme.current.textColor
         channelNameLabel.textColor = Theme.current.textColor
         
-        channelLastActivity.font = .systemFont(ofSize: channelLastActivity.font.pointSize)
+        channelLastMessageLabel.font = .systemFont(ofSize: channelLastMessageLabel.font.pointSize)
     }
     
 }
 
 extension ChannelCell: ConfigurableView {
     
-    typealias ConfigurationModel = Channel
+    typealias ConfigurationModel = Channel_db
     
     func configure(with model: ConfigurationModel) {
         
         channelNameLabel.text = model.name
-        channelLastActivity.text = model.lastMessage
+        channelLastMessageLabel.text = model.lastMessage
         if let date = model.lastActivity {
             let dateFormatter = DateFormatter()
             let calendar = Calendar.current
@@ -45,37 +45,9 @@ extension ChannelCell: ConfigurableView {
             } else {
                 dateFormatter.dateFormat = "HH:mm"
             }
-            channelLastMessageLabel.text = dateFormatter.string(from: date)
+            channelLastActivityLabel.text = dateFormatter.string(from: date)
+        } else {
+            channelLastActivityLabel.text = ""
         }
-        
-//        channelNameLabel.text = model.name
-//        if model.message.isEmpty {
-//            lastMessagedateLabel.isHidden = true
-//            lastMessageLabel.text = "No messages yet"
-//            lastMessageLabel.font = UIFont(name: "Bradley hand", size: lastMessageLabel.font.pointSize)
-//        } else {
-//            if model.hasUnreadedMessages {
-//                lastMessageLabel.font = UIFont.systemFont(ofSize: lastMessageLabel.font.pointSize, weight: .bold)
-//            }
-//            lastMessageLabel.text = model.message
-//
-//            let dateFormatter = DateFormatter()
-//            let calendar = Calendar.current
-//
-//            if !calendar.isDateInToday(model.date) {
-//                dateFormatter.dateFormat = "dd MMM"
-//
-//            } else {
-//                dateFormatter.dateFormat = "HH:mm"
-//            }
-//            lastMessagedateLabel.text = dateFormatter.string(from: model.date)
-//            lastMessagedateLabel.isHidden = false
-//        }
-//        if model.isOnline {
-//            self.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 93 / 255, alpha: 1)
-//            self.lastMessageLabel.textColor = .black
-//            self.lastMessagedateLabel.textColor = .black
-//            self.channelNameLabel.textColor = .black
-//        }
     }
 }

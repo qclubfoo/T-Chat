@@ -81,8 +81,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="channelLastActivity" destination="QcT-a3-ARg" id="005-qw-6hx"/>
-                                    <outlet property="channelLastMessageLabel" destination="Itz-5E-l9q" id="b3q-Tp-Q6J"/>
+                                    <outlet property="channelLastActivityLabel" destination="Itz-5E-l9q" id="b3q-Tp-Q6J"/>
+                                    <outlet property="channelLastMessageLabel" destination="QcT-a3-ARg" id="005-qw-6hx"/>
                                     <outlet property="channelNameLabel" destination="Dqv-ue-3Z9" id="ozW-8s-8Bc"/>
                                 </connections>
                             </tableViewCell>

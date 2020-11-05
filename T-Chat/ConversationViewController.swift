@@ -26,6 +26,8 @@ class ConversationViewController: UITableViewController {
     }
     var userName: String?
     var reference: CollectionReference?
+    var channelIdentifier: String?
+    lazy var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +44,21 @@ class ConversationViewController: UITableViewController {
                             else { continue }
                         messages.append(Message(content: content, created: created.dateValue(), senderId: senderId, senderName: senderName))
                     }
-                    messages.sort { first, second in
-                        if first.created < second.created {
-                            return true
-                        }
-                        return false
-                    }
+                    
                     self?.conversation = messages
+                    if let coreDataStack = self?.appDelegate?.coreDataStack {
+                        guard let channelID = self?.channelIdentifier else { return }
+                            coreDataStack.performSave { context in
+                        messages.forEach { currentMessage in
+                                _ = Message_db(content: currentMessage.content,
+                                                         created: currentMessage.created,
+                                                         senderID: currentMessage.senderId,
+                                                         senderName: currentMessage.senderName,
+                                                         channelID: channelID,
+                                                         context: context)
+                            }
+                        }
+                    }
                 }
             }
         }
