@@ -75,6 +75,11 @@ class CoreDataStack {
         context.performAndWait {
             block(context)
             if context.hasChanges {
+                do {
+                    try context.obtainPermanentIDs(for: Array(context.insertedObjects))
+                } catch {
+                    print("ObtainPermanentID error")
+                }
                 performSave(in: context)
             }
         }
